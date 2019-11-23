@@ -4,29 +4,14 @@
     "name": "hello_world",
     "version": "${version}",
     "commands" : {
-        "getMetadata": {
+        "updateMergePedido": {
             "endpointType" : "command",
-            "kind": "query",
-            "documentation": "Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested.",
-            "idempotent": true,
-            "input" : {
-                "metadataFormat" : {
-                    "type": "string",
-                    "optional": true,
-                    "multivalued": false,
-                    "readOnly": false
-                }
-            },
-            "output" : {
-                "metadata" : {
-                    "type": "string",
-                    "optional": false,
-                    "multivalued": false,
-                    "readOnly": false
-                }
-            },
+            "kind": "updateMerge",
+            "documentation": "The 'updateMerge' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
             "extensionPoint" : false,
-            "visibility" : "PRIVATE"
+            "visibility" : "PUBLIC"
         },
         "retrieveCliente": {
             "endpointType" : "command",
@@ -68,22 +53,6 @@
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
         },
-        "getDependencies": {
-            "endpointType" : "command",
-            "kind": "query",
-            "documentation": "Returns a list with all dependencies from this service, along with their respective versions",
-            "idempotent": true,
-            "output" : {
-                "dependencies" : {
-                    "type": "dependency",
-                    "optional": false,
-                    "multivalued": true,
-                    "readOnly": false
-                }
-            },
-            "extensionPoint" : false,
-            "visibility" : "PUBLIC"
-        },
         "updateMergeCliente": {
             "endpointType" : "command",
             "kind": "updateMerge",
@@ -93,12 +62,50 @@
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
         },
-        "createCliente": {
+        "listPedido": {
             "endpointType" : "command",
-            "kind": "create",
-            "documentation": "The 'create' request primitive for the Cliente entity.",
-            "input" : "cliente",
-            "output" : "cliente",
+            "kind": "list",
+            "documentation": "The 'list' request primitive for the Pedido entity.",
+            "input" : {
+                "offset" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "size" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "orderBy" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "filter" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "displayFields" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "contents" : {
+                    "type": "pedido",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
         },
@@ -137,11 +144,60 @@
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
         },
+        "listaItemManual": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+            },
+            "output" : {
+                "listItens" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "updatePedido": {
+            "endpointType" : "command",
+            "kind": "update",
+            "documentation": "The 'update' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
         "odata": {
             "endpointType" : "command",
             "kind": "action",
             "extensionPoint" : false,
             "visibility" : "PRIVATE"
+        },
+        "exportItem": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "config" : {
+                    "type": "exportConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "exportJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
         },
         "importCliente": {
             "endpointType" : "command",
@@ -228,6 +284,323 @@
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
         },
+        "createBulkItem": {
+            "endpointType" : "command",
+            "kind": "createBulk",
+            "documentation": "The 'createBulk' request primitive for the Item entity.",
+            "input" : {
+                "entities" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "listItem": {
+            "endpointType" : "command",
+            "kind": "list",
+            "documentation": "The 'list' request primitive for the Item entity.",
+            "input" : {
+                "offset" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "size" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "orderBy" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "filter" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "displayFields" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "contents" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "getMetadata": {
+            "endpointType" : "command",
+            "kind": "query",
+            "documentation": "Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested.",
+            "idempotent": true,
+            "input" : {
+                "metadataFormat" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "metadata" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "createMergePedido": {
+            "endpointType" : "command",
+            "kind": "createMerge",
+            "documentation": "The 'createMerge' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "getDependencies": {
+            "endpointType" : "command",
+            "kind": "query",
+            "documentation": "Returns a list with all dependencies from this service, along with their respective versions",
+            "idempotent": true,
+            "output" : {
+                "dependencies" : {
+                    "type": "dependency",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "deletePedido": {
+            "endpointType" : "command",
+            "kind": "delete",
+            "documentation": "The 'delete' request primitive for the Pedido entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateItem": {
+            "endpointType" : "command",
+            "kind": "update",
+            "documentation": "The 'update' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportPedido": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "config" : {
+                    "type": "exportConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "exportJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "retrievePedido": {
+            "endpointType" : "command",
+            "kind": "retrieve",
+            "documentation": "The 'retrieve' request primitive for the Pedido entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createCliente": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Cliente entity.",
+            "input" : "cliente",
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createMergeItem": {
+            "endpointType" : "command",
+            "kind": "createMerge",
+            "documentation": "The 'createMerge' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importPedido": {
+            "endpointType" : "command",
+            "kind": "action",
+            "input" : {
+                "config" : {
+                    "type": "importConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "importJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createPedido": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importItem": {
+            "endpointType" : "command",
+            "kind": "action",
+            "input" : {
+                "config" : {
+                    "type": "importConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "importJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateMergeItem": {
+            "endpointType" : "command",
+            "kind": "updateMerge",
+            "documentation": "The 'updateMerge' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "deleteItem": {
+            "endpointType" : "command",
+            "kind": "delete",
+            "documentation": "The 'delete' request primitive for the Item entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createItem": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "retrieveItem": {
+            "endpointType" : "command",
+            "kind": "retrieve",
+            "documentation": "The 'retrieve' request primitive for the Item entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createBulkPedido": {
+            "endpointType" : "command",
+            "kind": "createBulk",
+            "documentation": "The 'createBulk' request primitive for the Pedido entity.",
+            "input" : {
+                "entities" : {
+                    "type": "pedido",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
         "helloWorld": {
             "endpointType" : "command",
             "kind": "query",
@@ -307,6 +680,58 @@
             },
             "extensionPoint" : false,
             "visibility" : "PUBLIC"
+        },
+        "importItemEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "importEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportItemEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "exportEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importPedidoEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "importEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportPedidoEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "exportEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
         }
     },
     "records": {
@@ -348,6 +773,66 @@
                 "type": "string",
                 "optional": true,
                 "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "item" : {
+            "id" : {
+                "type": "string",
+                "format": "uuid",
+                "optional": true,
+                "multivalued": false,
+            	"readOnly": true
+            },
+            "descricao" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "quantidade" : {
+                "type": "double",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "valorUnitario" : {
+                "type": "double",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "pedido" : {
+            "id" : {
+                "type": "string",
+                "format": "uuid",
+                "optional": true,
+                "multivalued": false,
+            	"readOnly": true
+            },
+            "data" : {
+                "type": "date",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "observacoes" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "cliente" : {
+                "type": "cliente",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "itens" : {
+                "type": "item",
+                "optional": false,
+                "multivalued": true,
                 "readOnly": false
             }
         },
@@ -1052,6 +1537,74 @@
                     "type": "string",
                     "optional": true,
                     "multivalued": false,
+                    "readOnly": false
+                }
+            }    
+        },
+        "item" : {
+            "id": "id",
+            "customizable": true,
+            "slots": { 
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": true,
+                    "multivalued": false,
+                	"readOnly": true
+                },
+                "descricao" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "quantidade" : {
+                    "type": "double",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "valorUnitario" : {
+                    "type": "double",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            }    
+        },
+        "pedido" : {
+            "id": "id",
+            "customizable": true,
+            "slots": { 
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": true,
+                    "multivalued": false,
+                	"readOnly": true
+                },
+                "data" : {
+                    "type": "date",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "observacoes" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "cliente" : {
+                    "type": "cliente",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "itens" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
                     "readOnly": false
                 }
             }    

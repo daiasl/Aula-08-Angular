@@ -11,6 +11,13 @@ service hello_world {
                 helloWorldMessage : string
             }
         }
+	    query listaItemManual{
+	    	in{
+	    	}
+	    	out{
+	    	 	listItens:item*
+	    	}
+	    }
     }
     entities {
 	    "Entidade que representa o cliente"
@@ -28,6 +35,33 @@ service hello_world {
 		    "id da foto"
 		    idFoto: string?
 		}
+		
+		"Item do pedido"
+		custom entity item{
+			"Chave primária"
+			id: uuid?
+			"descrição"
+			descricao: string
+			"quantidade"
+			quantidade: double
+			"valor unitário"
+			valorUnitario: double
+		}
+		
+		"Pedido"
+		custom entity pedido{
+			"Chave primaria"
+			id: uuid?
+			"Data do pedido"
+			data: date
+			"Observações do pedido"
+			observacoes: string?
+			"Cliente do pedido"
+			cliente: cliente	
+			"Itens do pedido"
+			itens: item*
+		} 
+		
 		
 	}
 } 

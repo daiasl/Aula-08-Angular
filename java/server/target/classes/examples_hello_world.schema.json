@@ -30,6 +30,58 @@
         	"required" : ["nome","dataNascimento","cpf"]
         }
         ,
+        "item" : {
+        	"type" : "object",
+        	"id" : "item",
+        	"properties" : {
+            	"id" : {
+            		"type": "string",
+            		"format": "uuid"
+            	},
+            	"descricao" : {
+            		"type": "string"
+            	},
+            	"quantidade" : {
+            		"type": "number",
+            		"format": "double"
+            	},
+            	"valorUnitario" : {
+            		"type": "number",
+            		"format": "double"
+            	}
+        	},
+        	"required" : ["descricao","quantidade","valorUnitario"]
+        }
+        ,
+        "pedido" : {
+        	"type" : "object",
+        	"id" : "pedido",
+        	"properties" : {
+            	"id" : {
+            		"type": "string",
+            		"format": "uuid"
+            	},
+            	"data" : {
+            		"type": "string",
+            		"format": "date"
+            	},
+            	"observacoes" : {
+            		"type": "string"
+            	},
+            	"cliente" : {
+            		"$ref": "#/properties/cliente"
+            	},
+            	"itens" : {
+            		"type": "array",
+            		"items": {
+            		  "$ref": "#/properties/item"
+            		  , "minimum": 1
+            		}
+            	}
+        	},
+        	"required" : ["data","cliente","itens"]
+        }
+        ,
         "notifyUserEventPayload" : {
         	"type" : "object",
         	"id" : "notifyUserEventPayload",

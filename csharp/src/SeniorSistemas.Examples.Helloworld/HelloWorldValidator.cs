@@ -44,6 +44,41 @@ namespace SeniorSistemas.Examples.Helloworld
                 throw new ArgumentException("HelloWorldMessage is required");
             }
         }
+        public static void Validate(ListaItemManualInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ListaItemManualInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            // no validation required
+        }
+        public static void Validate(ListaItemManualOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ListaItemManualOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.ListItens == null || toValidate.ListItens.Count == 0)
+            {
+                throw new ArgumentException("ListItens is required, at least one value must be present");
+            }
+            foreach (Item it in toValidate.ListItens)
+            {
+                it.Validate(validated);
+            }
+        }
         public static void Validate(Cliente toValidate)
         {
         	Validate(toValidate, new ArrayList());
@@ -67,6 +102,61 @@ namespace SeniorSistemas.Examples.Helloworld
             if (toValidate.Cpf == null)
             {
                 throw new ArgumentException("Cpf is required");
+            }
+        }
+        public static void Validate(Item toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(Item toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Descricao == null)
+            {
+                throw new ArgumentException("Descricao is required");
+            }
+            if (toValidate.Quantidade == null)
+            {
+                throw new ArgumentException("Quantidade is required");
+            }
+            if (toValidate.ValorUnitario == null)
+            {
+                throw new ArgumentException("ValorUnitario is required");
+            }
+        }
+        public static void Validate(Pedido toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(Pedido toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Data == null)
+            {
+                throw new ArgumentException("Data is required");
+            }
+            if (toValidate.Cliente == null)
+            {
+                throw new ArgumentException("Cliente is required");
+            }
+            toValidate.Cliente.Validate(validated);
+            if (toValidate.Itens == null || toValidate.Itens.Count == 0)
+            {
+                throw new ArgumentException("Itens is required, at least one value must be present");
+            }
+            foreach (Item it in toValidate.Itens)
+            {
+                it.Validate(validated);
             }
         }
         public static void Validate(ServiceStartedPayload toValidate)
@@ -703,6 +793,218 @@ namespace SeniorSistemas.Examples.Helloworld
             }
             toValidate.Eventpl.Validate(validated);
         }
+        public static void Validate(ImportItemInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportItemInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Config == null)
+            {
+                throw new ArgumentException("Config is required");
+            }
+            toValidate.Config.Validate(validated);
+        }
+        public static void Validate(ImportItemOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportItemOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.ImportJobId == null)
+            {
+                throw new ArgumentException("ImportJobId is required");
+            }
+        }
+        public static void Validate(ExportItemInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportItemInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Config == null)
+            {
+                throw new ArgumentException("Config is required");
+            }
+            toValidate.Config.Validate(validated);
+        }
+        public static void Validate(ExportItemOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportItemOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.ExportJobId == null)
+            {
+                throw new ArgumentException("ExportJobId is required");
+            }
+        }
+        public static void Validate(ImportItemEventPayload toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportItemEventPayload toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Eventpl == null)
+            {
+                throw new ArgumentException("Eventpl is required");
+            }
+            toValidate.Eventpl.Validate(validated);
+        }
+        public static void Validate(ExportItemEventPayload toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportItemEventPayload toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Eventpl == null)
+            {
+                throw new ArgumentException("Eventpl is required");
+            }
+            toValidate.Eventpl.Validate(validated);
+        }
+        public static void Validate(ImportPedidoInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportPedidoInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Config == null)
+            {
+                throw new ArgumentException("Config is required");
+            }
+            toValidate.Config.Validate(validated);
+        }
+        public static void Validate(ImportPedidoOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportPedidoOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.ImportJobId == null)
+            {
+                throw new ArgumentException("ImportJobId is required");
+            }
+        }
+        public static void Validate(ExportPedidoInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportPedidoInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Config == null)
+            {
+                throw new ArgumentException("Config is required");
+            }
+            toValidate.Config.Validate(validated);
+        }
+        public static void Validate(ExportPedidoOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportPedidoOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.ExportJobId == null)
+            {
+                throw new ArgumentException("ExportJobId is required");
+            }
+        }
+        public static void Validate(ImportPedidoEventPayload toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ImportPedidoEventPayload toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Eventpl == null)
+            {
+                throw new ArgumentException("Eventpl is required");
+            }
+            toValidate.Eventpl.Validate(validated);
+        }
+        public static void Validate(ExportPedidoEventPayload toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(ExportPedidoEventPayload toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Eventpl == null)
+            {
+                throw new ArgumentException("Eventpl is required");
+            }
+            toValidate.Eventpl.Validate(validated);
+        }
         public static void Validate(CreateBulkClienteInput toValidate)
         {
         	Validate(toValidate, new ArrayList());
@@ -726,6 +1028,68 @@ namespace SeniorSistemas.Examples.Helloworld
         }
         
         internal static void Validate(CreateBulkClienteOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            // no validation required
+        }
+        public static void Validate(CreateBulkItemInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(CreateBulkItemInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Entities == null || toValidate.Entities.Count == 0)
+            {
+                throw new ArgumentException("Entities is required, at least one value must be present");
+            }
+        }
+        public static void Validate(CreateBulkItemOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(CreateBulkItemOutput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            // no validation required
+        }
+        public static void Validate(CreateBulkPedidoInput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(CreateBulkPedidoInput toValidate, IList validated)
+        {
+        	if (validated.Contains(toValidate))
+        	{
+        		return;
+        	}
+        	validated.Add(toValidate);
+            if (toValidate.Entities == null || toValidate.Entities.Count == 0)
+            {
+                throw new ArgumentException("Entities is required, at least one value must be present");
+            }
+        }
+        public static void Validate(CreateBulkPedidoOutput toValidate)
+        {
+        	Validate(toValidate, new ArrayList());
+        }
+        
+        internal static void Validate(CreateBulkPedidoOutput toValidate, IList validated)
         {
         	if (validated.Contains(toValidate))
         	{

@@ -1,4 +1,15 @@
 domain examples
 
 service hello_world {
+entities{
+	entity pedido{
+		relationships{
+			OneToMany(itens){
+				type: aggregation
+			}
+			ManyToOne(cliente){
+				type: aggregation
+			}
+		}
+	}	
 } 

@@ -259,6 +259,8 @@ public class MetadataServiceImpl implements MetadataService, Serializable {
 			entityClasses = new ArrayList<>();
 		}
 		entityClasses.add(ClienteEntity.class);
+		entityClasses.add(ItemEntity.class);
+		entityClasses.add(PedidoEntity.class);
 	}
 	
    /**

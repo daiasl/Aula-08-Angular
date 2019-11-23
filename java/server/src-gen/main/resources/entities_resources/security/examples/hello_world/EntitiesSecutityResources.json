@@ -22,5 +22,53 @@
 		    	"label": "platform.authorization.examples_hello_world_entities_cliente_action_visualizar_label"
 		    }
 		]
+	},
+	{
+		"name": "item",
+		"label": "platform.authorization.examples_hello_world_entities_item_label",
+		"description": "platform.authorization.examples_hello_world_entities_item_description",
+		"URI": "res://senior.com.br/examples/hello_world/entities/item",
+		"actions" : [
+		    {
+		    	"name": "Incluir",
+		    	"label": "platform.authorization.examples_hello_world_entities_item_action_incluir_label"
+		    },
+		    {
+		    	"name": "Editar",
+		    	"label": "platform.authorization.examples_hello_world_entities_item_action_editar_label"
+		    },
+		    {
+		    	"name": "Excluir",
+		    	"label": "platform.authorization.examples_hello_world_entities_item_action_excluir_label"
+		    },
+		    {
+		    	"name": "Visualizar",
+		    	"label": "platform.authorization.examples_hello_world_entities_item_action_visualizar_label"
+		    }
+		]
+	},
+	{
+		"name": "pedido",
+		"label": "platform.authorization.examples_hello_world_entities_pedido_label",
+		"description": "platform.authorization.examples_hello_world_entities_pedido_description",
+		"URI": "res://senior.com.br/examples/hello_world/entities/pedido",
+		"actions" : [
+		    {
+		    	"name": "Incluir",
+		    	"label": "platform.authorization.examples_hello_world_entities_pedido_action_incluir_label"
+		    },
+		    {
+		    	"name": "Editar",
+		    	"label": "platform.authorization.examples_hello_world_entities_pedido_action_editar_label"
+		    },
+		    {
+		    	"name": "Excluir",
+		    	"label": "platform.authorization.examples_hello_world_entities_pedido_action_excluir_label"
+		    },
+		    {
+		    	"name": "Visualizar",
+		    	"label": "platform.authorization.examples_hello_world_entities_pedido_action_visualizar_label"
+		    }
+		]
 	}
 ]

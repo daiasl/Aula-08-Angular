@@ -90,6 +90,65 @@ paths:
           schema:
             $ref: '#/definitions/genericError'
   
+  /hello_world/queries/listaItemManual:
+    post:
+      description: ""
+      tags:
+        - Queries
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            type: object
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - listItens
+            properties:
+              listItens:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                   - $ref: '#/definitions/item'
+                  minimum: 1
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    get:
+      description: ""
+      tags:
+        - Queries
+      x-senior-visibility: PRIVATE
+      parameters:
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - listItens
+            properties:
+              listItens:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                   - $ref: '#/definitions/item'
+                  minimum: 1
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
   /hello_world/queries/getMetadata:
     post:
       description: "Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested."
@@ -148,6 +207,78 @@ paths:
             $ref: '#/definitions/genericError'
   
   /hello_world/queries/exportCliente:
+    post:
+      description: ""
+      tags:
+        - Queries
+      x-senior-visibility: PUBLIC
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - config
+            properties:
+              config:
+                type: object
+                allOf:
+                 - $ref: '#/definitions/exportConfig'
+                description: ""
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - exportJobId
+            properties:
+              exportJobId:
+                type: string
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/queries/exportItem:
+    post:
+      description: ""
+      tags:
+        - Queries
+      x-senior-visibility: PUBLIC
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - config
+            properties:
+              config:
+                type: object
+                allOf:
+                 - $ref: '#/definitions/exportConfig'
+                description: ""
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - exportJobId
+            properties:
+              exportJobId:
+                type: string
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/queries/exportPedido:
     post:
       description: ""
       tags:
@@ -249,6 +380,78 @@ paths:
             $ref: '#/definitions/genericError'
   
   /hello_world/actions/importCliente:
+    post:
+      description: ""
+      tags:
+        - Actions
+      x-senior-visibility: PUBLIC
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - config
+            properties:
+              config:
+                type: object
+                allOf:
+                 - $ref: '#/definitions/importConfig'
+                description: ""
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - importJobId
+            properties:
+              importJobId:
+                type: string
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/actions/importItem:
+    post:
+      description: ""
+      tags:
+        - Actions
+      x-senior-visibility: PUBLIC
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - config
+            properties:
+              config:
+                type: object
+                allOf:
+                 - $ref: '#/definitions/importConfig'
+                description: ""
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            required:
+              - importJobId
+            properties:
+              importJobId:
+                type: string
+                description: ""
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/actions/importPedido:
     post:
       description: ""
       tags:
@@ -459,6 +662,358 @@ paths:
           schema:
             $ref: '#/definitions/genericError'
   
+  /hello_world/entities/item:
+    post:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: entity
+          in: body
+          required: true
+          schema:
+            type: object
+            allOf:
+             - $ref: '#/definitions/item'
+      responses:
+        200:
+          description: 'The created resource'
+          schema:
+            $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    patch:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: entity
+          in: body
+          required: true
+          schema:
+            type: object
+            allOf:
+             - $ref: '#/definitions/item'
+      responses:
+        200:
+          description: 'The created resource'
+          schema:
+            $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    get:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: offset
+          in: query
+          type: number
+        - name: size
+          in: query
+          type: number
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/entities/item/{id}:
+    put:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: entity
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/item'
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    patch:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: entity
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/item'
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    get:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/item'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    delete:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Ok
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/entities/item/bulk:
+    post:
+      description: "This entity is customizable."
+      tags:
+        - Bulk
+      parameters:
+        - name: entities
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/item'
+      responses:
+        200:
+          description: 'The bulk creation has created resources'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/entities/pedido:
+    post:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: entity
+          in: body
+          required: true
+          schema:
+            type: object
+            allOf:
+             - $ref: '#/definitions/pedido'
+      responses:
+        200:
+          description: 'The created resource'
+          schema:
+            $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    patch:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: entity
+          in: body
+          required: true
+          schema:
+            type: object
+            allOf:
+             - $ref: '#/definitions/pedido'
+      responses:
+        200:
+          description: 'The created resource'
+          schema:
+            $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    get:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: offset
+          in: query
+          type: number
+        - name: size
+          in: query
+          type: number
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/entities/pedido/{id}:
+    put:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: entity
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/pedido'
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    patch:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: entity
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/pedido'
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    get:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/pedido'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+    delete:
+      description: "This entity is customizable."
+      tags:
+        - CRUD
+      x-senior-visibility: PRIVATE
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Ok
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
+  /hello_world/entities/pedido/bulk:
+    post:
+      description: "This entity is customizable."
+      tags:
+        - Bulk
+      parameters:
+        - name: entities
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/pedido'
+      responses:
+        200:
+          description: 'The bulk creation has created resources'
+        default:
+          description: Error response
+          schema:
+            $ref: '#/definitions/genericError'
+  
   
 definitions:
   userNotificationKind:
@@ -591,6 +1146,63 @@ definitions:
       idFoto:
         type: string
         description: "id da foto"
+  
+  item:
+    description: "Item do pedido"
+    type: object
+    required:
+      - descricao
+      - quantidade
+      - valorUnitario
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Chave primária"
+      descricao:
+        type: string
+        description: "descrição"
+      quantidade:
+        type: number
+        format: double
+        description: "quantidade"
+      valorUnitario:
+        type: number
+        format: double
+        description: "valor unitário"
+  
+  pedido:
+    description: "Pedido"
+    type: object
+    required:
+      - data
+      - cliente
+      - itens
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Chave primaria"
+      data:
+        type: string
+        format: date
+        description: "Data do pedido"
+      observacoes:
+        type: string
+        description: "Observações do pedido"
+      cliente:
+        type: object
+        allOf:
+         - $ref: '#/definitions/cliente'
+        description: "Cliente do pedido"
+      itens:
+        type: array
+        items:
+          type: object
+          allOf:
+           - $ref: '#/definitions/item'
+          minimum: 1
+        description: "Itens do pedido"
   
   notifyUserEventPayload:
     description: "Represents a regular user event notification payload"

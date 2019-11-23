@@ -38,6 +38,38 @@
                     </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:complexType name="item">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:uuid" minOccurs="0" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="descricao" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="quantidade" type="xsd:double" minOccurs="1" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="valorUnitario" type="xsd:double" minOccurs="1" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="pedido">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:uuid" minOccurs="0" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="data" type="xsd:date" minOccurs="1" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="observacoes" type="xsd:string" minOccurs="0" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <xsd:element name="cliente" type="cliente" minOccurs="1" maxOccurs="1"  readOnly="false">
+                    </xsd:element>
+                    <!-- collection wrapper for itens -->
+                    <xsd:element name="itens" minOccurs="1" maxOccurs="1">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
             <xsd:simpleType name="userNotificationKind">
                 <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="Operational"/>
@@ -369,21 +401,8 @@
             <!-- Message payload elements for signals -->
             
             <!-- Message input/output elements for commands -->
-            <xsd:element name="getMetadata">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="metadataFormat" type="xsd:string" minOccurs="0" maxOccurs="1"  readOnly="false">
-                        </xsd:element>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-            <xsd:element name="getMetadataOutput">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="metadata" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
-                        </xsd:element>
-                    </xsd:sequence>
-                </xsd:complexType>
+            <xsd:element name="updateMergePedido">
+                <xsd:complexType/>
             </xsd:element>
             <xsd:element name="retrieveCliente">
                 <xsd:complexType>
@@ -409,28 +428,44 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="getDependencies">
+            <xsd:element name="updateMergeCliente">
                 <xsd:complexType/>
             </xsd:element>
-            <xsd:element name="getDependenciesOutput">
+            <xsd:element name="listPedido">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <!-- collection wrapper for dependencies -->
-                        <xsd:element name="dependencies" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="offset" type="xsd:long" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="size" type="xsd:long" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="orderBy" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="filter" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <!-- collection wrapper for displayFields -->
+                        <xsd:element name="displayFields" minOccurs="1" maxOccurs="1">
                             <xsd:complexType>
                                 <xsd:sequence>
-                                    <xsd:element name="item" type="dependency" minOccurs="1" maxOccurs="unbounded"/>
+                                    <xsd:element name="item" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
                                 </xsd:sequence>
                             </xsd:complexType>
                         </xsd:element>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="updateMergeCliente">
-                <xsd:complexType/>
-            </xsd:element>
-            <xsd:element name="createCliente">
-                <xsd:complexType/>
+            <xsd:element name="listPedidoOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for contents -->
+                        <xsd:element name="contents" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="pedido" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
             </xsd:element>
             <xsd:element name="createMergeCliente">
                 <xsd:complexType/>
@@ -458,8 +493,47 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="listaItemManual">
+                <xsd:complexType>
+                    <xsd:sequence>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listaItemManualOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for listItens -->
+                        <xsd:element name="listItens" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updatePedido">
+                <xsd:complexType/>
+            </xsd:element>
             <xsd:element name="odata">
                 <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="exportItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="config" type="exportConfig" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="exportItemOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="exportJobId" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
             </xsd:element>
             <xsd:element name="importCliente">
                 <xsd:complexType>
@@ -521,6 +595,216 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="createBulkItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for entities -->
+                        <xsd:element name="entities" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createBulkItemOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="offset" type="xsd:long" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="size" type="xsd:long" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="orderBy" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <xsd:element name="filter" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                        <!-- collection wrapper for displayFields -->
+                        <xsd:element name="displayFields" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="listItemOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for contents -->
+                        <xsd:element name="contents" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetadata">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="metadataFormat" type="xsd:string" minOccurs="0" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetadataOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="metadata" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMergePedido">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="getDependencies">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="getDependenciesOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for dependencies -->
+                        <xsd:element name="dependencies" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="dependency" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deletePedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:uuid" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updateItem">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="exportPedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="config" type="exportConfig" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="exportPedidoOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="exportJobId" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="retrievePedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:uuid" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCliente">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="createMergeItem">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="importPedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="config" type="importConfig" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="importPedidoOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="importJobId" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createPedido">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="importItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="config" type="importConfig" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="importItemOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="importJobId" type="xsd:string" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updateMergeItem">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="deleteItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:uuid" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createItem">
+                <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="retrieveItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:uuid" minOccurs="1" maxOccurs="1"  readOnly="false">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createBulkPedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <!-- collection wrapper for entities -->
+                        <xsd:element name="entities" minOccurs="1" maxOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="item" type="pedido" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createBulkPedidoOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
             <xsd:element name="helloWorld">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -540,11 +824,11 @@
         </xsd:schema>
     </wsdl:types>
     
-    <wsdl:message name="getMetadataRequest">
-        <wsdl:part name="parameters" element="getMetadata"/>
+    <wsdl:message name="updateMergePedidoRequest">
+        <wsdl:part name="parameters" element="updateMergePedido"/>
     </wsdl:message>
-    <wsdl:message name="getMetadataResponse">
-        <wsdl:part name="result" element="getMetadataOutput"/>
+    <wsdl:message name="updateMergePedidoResponse">
+        <wsdl:part name="result" element="updateMergePedidoOutput"/>
     </wsdl:message>
     <wsdl:message name="retrieveClienteRequest">
         <wsdl:part name="toRetrieve" element="retrieveCliente"/>
@@ -558,23 +842,17 @@
     <wsdl:message name="exportClienteResponse">
         <wsdl:part name="result" element="exportClienteOutput"/>
     </wsdl:message>
-    <wsdl:message name="getDependenciesRequest">
-        <wsdl:part name="parameters" element="getDependencies"/>
-    </wsdl:message>
-    <wsdl:message name="getDependenciesResponse">
-        <wsdl:part name="result" element="getDependenciesOutput"/>
-    </wsdl:message>
     <wsdl:message name="updateMergeClienteRequest">
         <wsdl:part name="parameters" element="updateMergeCliente"/>
     </wsdl:message>
     <wsdl:message name="updateMergeClienteResponse">
         <wsdl:part name="result" element="updateMergeClienteOutput"/>
     </wsdl:message>
-    <wsdl:message name="createClienteRequest">
-        <wsdl:part name="toCreate" element="createCliente"/>
+    <wsdl:message name="listPedidoRequest">
+        <wsdl:part name="pageRequest" element="listPedido"/>
     </wsdl:message>
-    <wsdl:message name="createClienteResponse">
-        <wsdl:part name="created" element="createClienteOutput"/>
+    <wsdl:message name="listPedidoResponse">
+        <wsdl:part name="pagedResults" element="listPedidoOutput"/>
     </wsdl:message>
     <wsdl:message name="createMergeClienteRequest">
         <wsdl:part name="parameters" element="createMergeCliente"/>
@@ -594,11 +872,29 @@
     <wsdl:message name="createBulkClienteResponse">
         <wsdl:part name="result" element="createBulkClienteOutput"/>
     </wsdl:message>
+    <wsdl:message name="listaItemManualRequest">
+        <wsdl:part name="parameters" element="listaItemManual"/>
+    </wsdl:message>
+    <wsdl:message name="listaItemManualResponse">
+        <wsdl:part name="result" element="listaItemManualOutput"/>
+    </wsdl:message>
+    <wsdl:message name="updatePedidoRequest">
+        <wsdl:part name="toUpdate" element="updatePedido"/>
+    </wsdl:message>
+    <wsdl:message name="updatePedidoResponse">
+        <wsdl:part name="updated" element="updatePedidoOutput"/>
+    </wsdl:message>
     <wsdl:message name="odataRequest">
         <wsdl:part name="parameters" element="odata"/>
     </wsdl:message>
     <wsdl:message name="odataResponse">
         <wsdl:part name="result" element="odataOutput"/>
+    </wsdl:message>
+    <wsdl:message name="exportItemRequest">
+        <wsdl:part name="parameters" element="exportItem"/>
+    </wsdl:message>
+    <wsdl:message name="exportItemResponse">
+        <wsdl:part name="result" element="exportItemOutput"/>
     </wsdl:message>
     <wsdl:message name="importClienteRequest">
         <wsdl:part name="parameters" element="importCliente"/>
@@ -615,6 +911,114 @@
     <wsdl:message name="deleteClienteRequest">
         <wsdl:part name="toDelete" element="deleteCliente"/>
     </wsdl:message>
+    <wsdl:message name="createBulkItemRequest">
+        <wsdl:part name="parameters" element="createBulkItem"/>
+    </wsdl:message>
+    <wsdl:message name="createBulkItemResponse">
+        <wsdl:part name="result" element="createBulkItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="listItemRequest">
+        <wsdl:part name="pageRequest" element="listItem"/>
+    </wsdl:message>
+    <wsdl:message name="listItemResponse">
+        <wsdl:part name="pagedResults" element="listItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="getMetadataRequest">
+        <wsdl:part name="parameters" element="getMetadata"/>
+    </wsdl:message>
+    <wsdl:message name="getMetadataResponse">
+        <wsdl:part name="result" element="getMetadataOutput"/>
+    </wsdl:message>
+    <wsdl:message name="createMergePedidoRequest">
+        <wsdl:part name="parameters" element="createMergePedido"/>
+    </wsdl:message>
+    <wsdl:message name="createMergePedidoResponse">
+        <wsdl:part name="result" element="createMergePedidoOutput"/>
+    </wsdl:message>
+    <wsdl:message name="getDependenciesRequest">
+        <wsdl:part name="parameters" element="getDependencies"/>
+    </wsdl:message>
+    <wsdl:message name="getDependenciesResponse">
+        <wsdl:part name="result" element="getDependenciesOutput"/>
+    </wsdl:message>
+    <wsdl:message name="deletePedidoRequest">
+        <wsdl:part name="toDelete" element="deletePedido"/>
+    </wsdl:message>
+    <wsdl:message name="updateItemRequest">
+        <wsdl:part name="toUpdate" element="updateItem"/>
+    </wsdl:message>
+    <wsdl:message name="updateItemResponse">
+        <wsdl:part name="updated" element="updateItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="exportPedidoRequest">
+        <wsdl:part name="parameters" element="exportPedido"/>
+    </wsdl:message>
+    <wsdl:message name="exportPedidoResponse">
+        <wsdl:part name="result" element="exportPedidoOutput"/>
+    </wsdl:message>
+    <wsdl:message name="retrievePedidoRequest">
+        <wsdl:part name="toRetrieve" element="retrievePedido"/>
+    </wsdl:message>
+    <wsdl:message name="retrievePedidoResponse">
+        <wsdl:part name="retrieved" element="retrievePedidoOutput"/>
+    </wsdl:message>
+    <wsdl:message name="createClienteRequest">
+        <wsdl:part name="toCreate" element="createCliente"/>
+    </wsdl:message>
+    <wsdl:message name="createClienteResponse">
+        <wsdl:part name="created" element="createClienteOutput"/>
+    </wsdl:message>
+    <wsdl:message name="createMergeItemRequest">
+        <wsdl:part name="parameters" element="createMergeItem"/>
+    </wsdl:message>
+    <wsdl:message name="createMergeItemResponse">
+        <wsdl:part name="result" element="createMergeItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="importPedidoRequest">
+        <wsdl:part name="parameters" element="importPedido"/>
+    </wsdl:message>
+    <wsdl:message name="importPedidoResponse">
+        <wsdl:part name="result" element="importPedidoOutput"/>
+    </wsdl:message>
+    <wsdl:message name="createPedidoRequest">
+        <wsdl:part name="toCreate" element="createPedido"/>
+    </wsdl:message>
+    <wsdl:message name="createPedidoResponse">
+        <wsdl:part name="created" element="createPedidoOutput"/>
+    </wsdl:message>
+    <wsdl:message name="importItemRequest">
+        <wsdl:part name="parameters" element="importItem"/>
+    </wsdl:message>
+    <wsdl:message name="importItemResponse">
+        <wsdl:part name="result" element="importItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="updateMergeItemRequest">
+        <wsdl:part name="parameters" element="updateMergeItem"/>
+    </wsdl:message>
+    <wsdl:message name="updateMergeItemResponse">
+        <wsdl:part name="result" element="updateMergeItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="deleteItemRequest">
+        <wsdl:part name="toDelete" element="deleteItem"/>
+    </wsdl:message>
+    <wsdl:message name="createItemRequest">
+        <wsdl:part name="toCreate" element="createItem"/>
+    </wsdl:message>
+    <wsdl:message name="createItemResponse">
+        <wsdl:part name="created" element="createItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveItemRequest">
+        <wsdl:part name="toRetrieve" element="retrieveItem"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveItemResponse">
+        <wsdl:part name="retrieved" element="retrieveItemOutput"/>
+    </wsdl:message>
+    <wsdl:message name="createBulkPedidoRequest">
+        <wsdl:part name="parameters" element="createBulkPedido"/>
+    </wsdl:message>
+    <wsdl:message name="createBulkPedidoResponse">
+        <wsdl:part name="result" element="createBulkPedidoOutput"/>
+    </wsdl:message>
     <wsdl:message name="helloWorldRequest">
         <wsdl:part name="parameters" element="helloWorld"/>
     </wsdl:message>
@@ -623,13 +1027,13 @@
     </wsdl:message>
     
     <wsdl:portType name="hello_worldPortType">
-        <wsdl:operation name="getMetadata">
+        <wsdl:operation name="updateMergePedido">
             <wsdl:documentation>
-            WARNING: THIS OPERATION IS PRIVATE AND MAY HAVE ITS BEHAVIOR CHANGED AT ANY TIME WITHOUT NOTICE. 
-            Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested. 
+            THIS OPERATION IS PUBLIC. 
+            The 'updateMerge' request primitive for the Pedido entity. 
             </wsdl:documentation>
-            <wsdl:input message="getMetadataRequest"/>
-            <wsdl:output message="getMetadataResponse"/>
+            <wsdl:input message="updateMergePedidoRequest"/>
+            <wsdl:output message="updateMergePedidoResponse"/>
         </wsdl:operation>
         <wsdl:operation name="retrieveCliente">
             <wsdl:documentation>
@@ -646,14 +1050,6 @@
             <wsdl:input message="exportClienteRequest"/>
             <wsdl:output message="exportClienteResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="getDependencies">
-            <wsdl:documentation>
-            THIS OPERATION IS PUBLIC. 
-            Returns a list with all dependencies from this service, along with their respective versions 
-            </wsdl:documentation>
-            <wsdl:input message="getDependenciesRequest"/>
-            <wsdl:output message="getDependenciesResponse"/>
-        </wsdl:operation>
         <wsdl:operation name="updateMergeCliente">
             <wsdl:documentation>
             THIS OPERATION IS PUBLIC. 
@@ -662,13 +1058,13 @@
             <wsdl:input message="updateMergeClienteRequest"/>
             <wsdl:output message="updateMergeClienteResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="createCliente">
+        <wsdl:operation name="listPedido">
             <wsdl:documentation>
             THIS OPERATION IS PUBLIC. 
-            The 'create' request primitive for the Cliente entity. 
+            The 'list' request primitive for the Pedido entity. 
             </wsdl:documentation>
-            <wsdl:input message="createClienteRequest"/>
-            <wsdl:output message="createClienteResponse"/>
+            <wsdl:input message="listPedidoRequest"/>
+            <wsdl:output message="listPedidoResponse"/>
         </wsdl:operation>
         <wsdl:operation name="createMergeCliente">
             <wsdl:documentation>
@@ -694,12 +1090,34 @@
             <wsdl:input message="createBulkClienteRequest"/>
             <wsdl:output message="createBulkClienteResponse"/>
         </wsdl:operation>
+        <wsdl:operation name="listaItemManual">
+            <wsdl:documentation>
+            WARNING: THIS OPERATION IS PRIVATE AND MAY HAVE ITS BEHAVIOR CHANGED AT ANY TIME WITHOUT NOTICE. 
+            </wsdl:documentation>
+            <wsdl:input message="listaItemManualRequest"/>
+            <wsdl:output message="listaItemManualResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updatePedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'update' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="updatePedidoRequest"/>
+            <wsdl:output message="updatePedidoResponse"/>
+        </wsdl:operation>
         <wsdl:operation name="odata">
             <wsdl:documentation>
             WARNING: THIS OPERATION IS PRIVATE AND MAY HAVE ITS BEHAVIOR CHANGED AT ANY TIME WITHOUT NOTICE. 
             </wsdl:documentation>
             <wsdl:input message="odataRequest"/>
             <wsdl:output message="odataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            </wsdl:documentation>
+            <wsdl:input message="exportItemRequest"/>
+            <wsdl:output message="exportItemResponse"/>
         </wsdl:operation>
         <wsdl:operation name="importCliente">
             <wsdl:documentation>
@@ -724,6 +1142,155 @@
             <wsdl:input message="deleteClienteRequest"/>
             <wsdl:output message="deleteClienteResponse"/>
         </wsdl:operation>
+        <wsdl:operation name="createBulkItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'createBulk' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createBulkItemRequest"/>
+            <wsdl:output message="createBulkItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'list' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="listItemRequest"/>
+            <wsdl:output message="listItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMetadata">
+            <wsdl:documentation>
+            WARNING: THIS OPERATION IS PRIVATE AND MAY HAVE ITS BEHAVIOR CHANGED AT ANY TIME WITHOUT NOTICE. 
+            Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested. 
+            </wsdl:documentation>
+            <wsdl:input message="getMetadataRequest"/>
+            <wsdl:output message="getMetadataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createMergePedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'createMerge' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createMergePedidoRequest"/>
+            <wsdl:output message="createMergePedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDependencies">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            Returns a list with all dependencies from this service, along with their respective versions 
+            </wsdl:documentation>
+            <wsdl:input message="getDependenciesRequest"/>
+            <wsdl:output message="getDependenciesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deletePedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'delete' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="deletePedidoRequest"/>
+            <wsdl:output message="deletePedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'update' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="updateItemRequest"/>
+            <wsdl:output message="updateItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportPedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            </wsdl:documentation>
+            <wsdl:input message="exportPedidoRequest"/>
+            <wsdl:output message="exportPedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrievePedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'retrieve' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="retrievePedidoRequest"/>
+            <wsdl:output message="retrievePedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCliente">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'create' request primitive for the Cliente entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createClienteRequest"/>
+            <wsdl:output message="createClienteResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createMergeItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'createMerge' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createMergeItemRequest"/>
+            <wsdl:output message="createMergeItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="importPedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            </wsdl:documentation>
+            <wsdl:input message="importPedidoRequest"/>
+            <wsdl:output message="importPedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createPedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'create' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createPedidoRequest"/>
+            <wsdl:output message="createPedidoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="importItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            </wsdl:documentation>
+            <wsdl:input message="importItemRequest"/>
+            <wsdl:output message="importItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateMergeItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'updateMerge' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="updateMergeItemRequest"/>
+            <wsdl:output message="updateMergeItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'delete' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="deleteItemRequest"/>
+            <wsdl:output message="deleteItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'create' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createItemRequest"/>
+            <wsdl:output message="createItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveItem">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'retrieve' request primitive for the Item entity. 
+            </wsdl:documentation>
+            <wsdl:input message="retrieveItemRequest"/>
+            <wsdl:output message="retrieveItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createBulkPedido">
+            <wsdl:documentation>
+            THIS OPERATION IS PUBLIC. 
+            The 'createBulk' request primitive for the Pedido entity. 
+            </wsdl:documentation>
+            <wsdl:input message="createBulkPedidoRequest"/>
+            <wsdl:output message="createBulkPedidoResponse"/>
+        </wsdl:operation>
         <wsdl:operation name="helloWorld">
             <wsdl:documentation>
             WARNING: THIS OPERATION IS PRIVATE AND MAY HAVE ITS BEHAVIOR CHANGED AT ANY TIME WITHOUT NOTICE. 
@@ -735,8 +1302,8 @@
     
     <wsdl:binding name="hello_worldSoapBinding" type="hello_worldPortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <wsdl:operation name="getMetadata">
-            <soap:operation soapAction="getMetadata"/>
+        <wsdl:operation name="updateMergePedido">
+            <soap:operation soapAction="updateMergePedido"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -762,15 +1329,6 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="getDependencies">
-            <soap:operation soapAction="getDependencies"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="updateMergeCliente">
             <soap:operation soapAction="updateMergeCliente"/>
             <wsdl:input>
@@ -780,8 +1338,8 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="createCliente">
-            <soap:operation soapAction="createCliente"/>
+        <wsdl:operation name="listPedido">
+            <soap:operation soapAction="listPedido"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -816,8 +1374,35 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
+        <wsdl:operation name="listaItemManual">
+            <soap:operation soapAction="listaItemManual"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updatePedido">
+            <soap:operation soapAction="updatePedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="odata">
             <soap:operation soapAction="odata"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="exportItem">
+            <soap:operation soapAction="exportItem"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -845,6 +1430,177 @@
         </wsdl:operation>
         <wsdl:operation name="deleteCliente">
             <soap:operation soapAction="deleteCliente"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createBulkItem">
+            <soap:operation soapAction="createBulkItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listItem">
+            <soap:operation soapAction="listItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMetadata">
+            <soap:operation soapAction="getMetadata"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMergePedido">
+            <soap:operation soapAction="createMergePedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDependencies">
+            <soap:operation soapAction="getDependencies"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePedido">
+            <soap:operation soapAction="deletePedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateItem">
+            <soap:operation soapAction="updateItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="exportPedido">
+            <soap:operation soapAction="exportPedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrievePedido">
+            <soap:operation soapAction="retrievePedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createCliente">
+            <soap:operation soapAction="createCliente"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMergeItem">
+            <soap:operation soapAction="createMergeItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="importPedido">
+            <soap:operation soapAction="importPedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPedido">
+            <soap:operation soapAction="createPedido"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="importItem">
+            <soap:operation soapAction="importItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateMergeItem">
+            <soap:operation soapAction="updateMergeItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItem">
+            <soap:operation soapAction="deleteItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createItem">
+            <soap:operation soapAction="createItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveItem">
+            <soap:operation soapAction="retrieveItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createBulkPedido">
+            <soap:operation soapAction="createBulkPedido"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

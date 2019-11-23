@@ -8,6 +8,13 @@
                 <slot name="helloWorldMessage" type="string" optional="false" multivalued="false"/>
             </output>
         </query>
+        <query name="listaItemManual" idempotent="false" extensionPoint="false" visibility="PRIVATE">
+            <input>
+            </input>
+            <output>
+                <slot name="listItens" type="item" optional="false" multivalued="true"/>
+            </output>
+        </query>
         <query name="getMetadata" idempotent="false" extensionPoint="false" visibility="PRIVATE">
             <input>
                 <slot name="metadataFormat" type="string" optional="true" multivalued="false"/>
@@ -27,6 +34,38 @@
             </output>
         </action>
         <query name="exportCliente" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="config" type="exportConfig" optional="false" multivalued="false"/>
+            </input>
+            <output>
+                <slot name="exportJobId" type="string" optional="false" multivalued="false"/>
+            </output>
+        </query>
+        <action name="importItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="config" type="importConfig" optional="false" multivalued="false"/>
+            </input>
+            <output>
+                <slot name="importJobId" type="string" optional="false" multivalued="false"/>
+            </output>
+        </action>
+        <query name="exportItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="config" type="exportConfig" optional="false" multivalued="false"/>
+            </input>
+            <output>
+                <slot name="exportJobId" type="string" optional="false" multivalued="false"/>
+            </output>
+        </query>
+        <action name="importPedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="config" type="importConfig" optional="false" multivalued="false"/>
+            </input>
+            <output>
+                <slot name="importJobId" type="string" optional="false" multivalued="false"/>
+            </output>
+        </action>
+        <query name="exportPedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
             <input>
                 <slot name="config" type="exportConfig" optional="false" multivalued="false"/>
             </input>
@@ -80,6 +119,98 @@
                 <slot name="contents" type="cliente" optional="false" multivalued="true"/>
             </output>
         </list>
+        <create name="createItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="item"/>
+            <output type="item"/>
+        </create>
+        <createBulk name="createBulkItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="entities" type="item" optional="false" multivalued="true"/>
+            </input>
+            <output>
+            </output>
+        </createBulk>
+        <createMerge name="createMergeItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="item"/>
+            <output type="item"/>
+        </createMerge>
+        <retrieve name="retrieveItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="id" type="string" format="uuid" optional="false" multivalued="false"/>
+            </input>
+            <output type="item"/>
+        </retrieve>
+        <update name="updateItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="item"/>
+            <output type="item"/>
+        </update>
+        <updateMerge name="updateMergeItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="item"/>
+            <output type="item"/>
+        </updateMerge>
+        <delete name="deleteItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="id" type="string" format="uuid" optional="false" multivalued="false"/>
+            </input>
+        </delete>
+        <list name="listItem" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="offset" type="integer" optional="false" multivalued="false"/>
+                <slot name="size" type="integer" optional="false" multivalued="false"/>
+                <slot name="orderBy" type="string" optional="false" multivalued="false"/>
+                <slot name="filter" type="string" optional="false" multivalued="false"/>
+                <slot name="displayFields" type="string" optional="false" multivalued="true"/>
+            </input>
+            <output>
+                <slot name="contents" type="item" optional="false" multivalued="true"/>
+            </output>
+        </list>
+        <create name="createPedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="pedido"/>
+            <output type="pedido"/>
+        </create>
+        <createBulk name="createBulkPedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="entities" type="pedido" optional="false" multivalued="true"/>
+            </input>
+            <output>
+            </output>
+        </createBulk>
+        <createMerge name="createMergePedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="pedido"/>
+            <output type="pedido"/>
+        </createMerge>
+        <retrieve name="retrievePedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="id" type="string" format="uuid" optional="false" multivalued="false"/>
+            </input>
+            <output type="pedido"/>
+        </retrieve>
+        <update name="updatePedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="pedido"/>
+            <output type="pedido"/>
+        </update>
+        <updateMerge name="updateMergePedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input type="pedido"/>
+            <output type="pedido"/>
+        </updateMerge>
+        <delete name="deletePedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="id" type="string" format="uuid" optional="false" multivalued="false"/>
+            </input>
+        </delete>
+        <list name="listPedido" idempotent="false" extensionPoint="false" visibility="PUBLIC">
+            <input>
+                <slot name="offset" type="integer" optional="false" multivalued="false"/>
+                <slot name="size" type="integer" optional="false" multivalued="false"/>
+                <slot name="orderBy" type="string" optional="false" multivalued="false"/>
+                <slot name="filter" type="string" optional="false" multivalued="false"/>
+                <slot name="displayFields" type="string" optional="false" multivalued="true"/>
+            </input>
+            <output>
+                <slot name="contents" type="pedido" optional="false" multivalued="true"/>
+            </output>
+        </list>
         <query name="getDependencies" idempotent="false" extensionPoint="false" visibility="PUBLIC">
             <output>
                 <slot name="dependencies" type="dependency" optional="false" multivalued="true"/>
@@ -108,6 +239,26 @@
                 <slot name="eventpl" type="exportEventStatus" optional="false" multivalued="false"/>
             </payload>
         </event>
+        <event name="importItemEvent" extensionPoint="false" visibility="PUBLIC">
+            <payload>
+                <slot name="eventpl" type="importEventStatus" optional="false" multivalued="false"/>
+            </payload>
+        </event>
+        <event name="exportItemEvent" extensionPoint="false" visibility="PUBLIC">
+            <payload>
+                <slot name="eventpl" type="exportEventStatus" optional="false" multivalued="false"/>
+            </payload>
+        </event>
+        <event name="importPedidoEvent" extensionPoint="false" visibility="PUBLIC">
+            <payload>
+                <slot name="eventpl" type="importEventStatus" optional="false" multivalued="false"/>
+            </payload>
+        </event>
+        <event name="exportPedidoEvent" extensionPoint="false" visibility="PUBLIC">
+            <payload>
+                <slot name="eventpl" type="exportEventStatus" optional="false" multivalued="false"/>
+            </payload>
+        </event>
     </events>
     <records>
         <record name="cliente">
@@ -117,6 +268,19 @@
             <slot name="creditoHabilitado" type="boolean" optional="true" multivalued="false"/>
             <slot name="cpf" type="string" optional="false" multivalued="false"/>
             <slot name="idFoto" type="string" optional="true" multivalued="false"/>
+        </record>
+        <record name="item">
+            <slot name="id" type="string" format="uuid" optional="true" multivalued="false"/>
+            <slot name="descricao" type="string" optional="false" multivalued="false"/>
+            <slot name="quantidade" type="double" optional="false" multivalued="false"/>
+            <slot name="valorUnitario" type="double" optional="false" multivalued="false"/>
+        </record>
+        <record name="pedido">
+            <slot name="id" type="string" format="uuid" optional="true" multivalued="false"/>
+            <slot name="data" type="date" optional="false" multivalued="false"/>
+            <slot name="observacoes" type="string" optional="true" multivalued="false"/>
+            <slot name="cliente" type="cliente" optional="false" multivalued="false"/>
+            <slot name="itens" type="item" optional="false" multivalued="true"/>
         </record>
         <record name="notifyUserEventPayload">
             <slot name="notificationClass" type="string" optional="true" multivalued="false"/>

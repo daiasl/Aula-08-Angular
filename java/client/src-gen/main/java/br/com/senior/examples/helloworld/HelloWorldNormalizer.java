@@ -34,5 +34,49 @@ public class HelloWorldNormalizer {
     		}
     	}
     }
+    /**
+     * Normalizes the Item payload.
+     */
+    public static void normalize(Item toNormalize, Map<String, Object> headers) {
+    	if (headers != null) {
+    		String entityId = headers.containsKey(Message.ENTITY_ID_HEADER) ? headers.get(Message.ENTITY_ID_HEADER).toString() : null;
+    		if (entityId != null && toNormalize != null && toNormalize.id == null) {
+    			toNormalize.id = entityId;
+    		}
+    	}
+    }
+    /**
+     * Normalizes the Item.Id payload.
+     */
+    public static void normalize(Item.Id toNormalize, Map<String, Object> headers) {
+    	if (headers != null) {
+    		String entityId = headers.containsKey(Message.ENTITY_ID_HEADER) ? headers.get(Message.ENTITY_ID_HEADER).toString() : null;
+    		if (entityId != null && toNormalize != null && toNormalize.id == null) {
+    			toNormalize.id = entityId;
+    		}
+    	}
+    }
+    /**
+     * Normalizes the Pedido payload.
+     */
+    public static void normalize(Pedido toNormalize, Map<String, Object> headers) {
+    	if (headers != null) {
+    		String entityId = headers.containsKey(Message.ENTITY_ID_HEADER) ? headers.get(Message.ENTITY_ID_HEADER).toString() : null;
+    		if (entityId != null && toNormalize != null && toNormalize.id == null) {
+    			toNormalize.id = entityId;
+    		}
+    	}
+    }
+    /**
+     * Normalizes the Pedido.Id payload.
+     */
+    public static void normalize(Pedido.Id toNormalize, Map<String, Object> headers) {
+    	if (headers != null) {
+    		String entityId = headers.containsKey(Message.ENTITY_ID_HEADER) ? headers.get(Message.ENTITY_ID_HEADER).toString() : null;
+    		if (entityId != null && toNormalize != null && toNormalize.id == null) {
+    			toNormalize.id = entityId;
+    		}
+    	}
+    }
     
 }

@@ -31,6 +31,17 @@ type
      *)
     class function GetHello_World_Response: String;
     (**
+     * @see TListaItemManualInput the request payload
+     *)
+    class function GetLista_Item_Manual: String;
+    (**
+     * The response primitive for listaItemManual.
+     *
+     * @see cLista_Item_Manual the request primitive
+     * @see TListaItemManualOutput the response payload
+     *)
+    class function GetLista_Item_Manual_Response: String;
+    (**
      * Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested.
      * @see TGetMetadataInput the request payload
      *)
@@ -71,6 +82,50 @@ type
      * @see TExportClienteOutput the response payload
      *)
     class function GetExport_Cliente_Response: String;
+    (**
+     * @see TImportItemInput the request payload
+     *)
+    class function GetImport_Item: String;
+    (**
+     * The response primitive for importItem.
+     *
+     * @see cImport_Item the request primitive
+     * @see TImportItemOutput the response payload
+     *)
+    class function GetImport_Item_Response: String;
+    (**
+     * @see TExportItemInput the request payload
+     *)
+    class function GetExport_Item: String;
+    (**
+     * The response primitive for exportItem.
+     *
+     * @see cExport_Item the request primitive
+     * @see TExportItemOutput the response payload
+     *)
+    class function GetExport_Item_Response: String;
+    (**
+     * @see TImportPedidoInput the request payload
+     *)
+    class function GetImport_Pedido: String;
+    (**
+     * The response primitive for importPedido.
+     *
+     * @see cImport_Pedido the request primitive
+     * @see TImportPedidoOutput the response payload
+     *)
+    class function GetImport_Pedido_Response: String;
+    (**
+     * @see TExportPedidoInput the request payload
+     *)
+    class function GetExport_Pedido: String;
+    (**
+     * The response primitive for exportPedido.
+     *
+     * @see cExport_Pedido the request primitive
+     * @see TExportPedidoOutput the response payload
+     *)
+    class function GetExport_Pedido_Response: String;
     (**
      * The 'create' request primitive for the Cliente entity.
      *)
@@ -156,6 +211,174 @@ type
      *)
     class function GetList_Cliente_Response: String;
     (**
+     * The 'create' request primitive for the Item entity.
+     *)
+    class function GetCreate_Item: String;
+    (**
+     * The response primitive for createItem.
+     *
+     * @see cCreate_Item the request primitive
+     *)
+    class function GetCreate_Item_Response: String;
+    (**
+     * The 'createBulk' request primitive for the Item entity.
+     * @see TCreateBulkItemInput the request payload
+     *)
+    class function GetCreate_Bulk_Item: String;
+    (**
+     * The response primitive for createBulkItem.
+     *
+     * @see cCreate_Bulk_Item the request primitive
+     * @see TCreateBulkItemOutput the response payload
+     *)
+    class function GetCreate_Bulk_Item_Response: String;
+    (**
+     * The 'createMerge' request primitive for the Item entity.
+     *)
+    class function GetCreate_Merge_Item: String;
+    (**
+     * The response primitive for createMergeItem.
+     *
+     * @see cCreate_Merge_Item the request primitive
+     *)
+    class function GetCreate_Merge_Item_Response: String;
+    (**
+     * The 'retrieve' request primitive for the Item entity.
+     *)
+    class function GetRetrieve_Item: String;
+    (**
+     * The response primitive for retrieveItem.
+     *
+     * @see cRetrieve_Item the request primitive
+     *)
+    class function GetRetrieve_Item_Response: String;
+    (**
+     * The 'update' request primitive for the Item entity.
+     *)
+    class function GetUpdate_Item: String;
+    (**
+     * The response primitive for updateItem.
+     *
+     * @see cUpdate_Item the request primitive
+     *)
+    class function GetUpdate_Item_Response: String;
+    (**
+     * The 'updateMerge' request primitive for the Item entity.
+     *)
+    class function GetUpdate_Merge_Item: String;
+    (**
+     * The response primitive for updateMergeItem.
+     *
+     * @see cUpdate_Merge_Item the request primitive
+     *)
+    class function GetUpdate_Merge_Item_Response: String;
+    (**
+     * The 'delete' request primitive for the Item entity.
+     *)
+    class function GetDelete_Item: String;
+    (**
+     * The response primitive for deleteItem.
+     *
+     * @see cDelete_Item the request primitive
+     *)
+    class function GetDelete_Item_Response: String;
+    (**
+     * The 'list' request primitive for the Item entity.
+     * @see TitemPageRequest the request payload
+     *)
+    class function GetList_Item: String;
+    (**
+     * The response primitive for listItem.
+     *
+     * @see cList_Item the request primitive
+     * @see TitemPagedResults the response payload
+     *)
+    class function GetList_Item_Response: String;
+    (**
+     * The 'create' request primitive for the Pedido entity.
+     *)
+    class function GetCreate_Pedido: String;
+    (**
+     * The response primitive for createPedido.
+     *
+     * @see cCreate_Pedido the request primitive
+     *)
+    class function GetCreate_Pedido_Response: String;
+    (**
+     * The 'createBulk' request primitive for the Pedido entity.
+     * @see TCreateBulkPedidoInput the request payload
+     *)
+    class function GetCreate_Bulk_Pedido: String;
+    (**
+     * The response primitive for createBulkPedido.
+     *
+     * @see cCreate_Bulk_Pedido the request primitive
+     * @see TCreateBulkPedidoOutput the response payload
+     *)
+    class function GetCreate_Bulk_Pedido_Response: String;
+    (**
+     * The 'createMerge' request primitive for the Pedido entity.
+     *)
+    class function GetCreate_Merge_Pedido: String;
+    (**
+     * The response primitive for createMergePedido.
+     *
+     * @see cCreate_Merge_Pedido the request primitive
+     *)
+    class function GetCreate_Merge_Pedido_Response: String;
+    (**
+     * The 'retrieve' request primitive for the Pedido entity.
+     *)
+    class function GetRetrieve_Pedido: String;
+    (**
+     * The response primitive for retrievePedido.
+     *
+     * @see cRetrieve_Pedido the request primitive
+     *)
+    class function GetRetrieve_Pedido_Response: String;
+    (**
+     * The 'update' request primitive for the Pedido entity.
+     *)
+    class function GetUpdate_Pedido: String;
+    (**
+     * The response primitive for updatePedido.
+     *
+     * @see cUpdate_Pedido the request primitive
+     *)
+    class function GetUpdate_Pedido_Response: String;
+    (**
+     * The 'updateMerge' request primitive for the Pedido entity.
+     *)
+    class function GetUpdate_Merge_Pedido: String;
+    (**
+     * The response primitive for updateMergePedido.
+     *
+     * @see cUpdate_Merge_Pedido the request primitive
+     *)
+    class function GetUpdate_Merge_Pedido_Response: String;
+    (**
+     * The 'delete' request primitive for the Pedido entity.
+     *)
+    class function GetDelete_Pedido: String;
+    (**
+     * The response primitive for deletePedido.
+     *
+     * @see cDelete_Pedido the request primitive
+     *)
+    class function GetDelete_Pedido_Response: String;
+    (**
+     * The 'list' request primitive for the Pedido entity.
+     * @see TpedidoPageRequest the request payload
+     *)
+    class function GetList_Pedido: String;
+    (**
+     * The response primitive for listPedido.
+     *
+     * @see cList_Pedido the request primitive
+     * @see TpedidoPagedResults the response payload
+     *)
+    class function GetList_Pedido_Response: String;
+    (**
      * Returns a list with all dependencies from this service, along with their respective versions
      *)
     class function GetGet_Dependencies: String;
@@ -180,6 +403,10 @@ type
     class function GetNotify_User_Event: String;
     class function GetImport_Cliente_Event: String;
     class function GetExport_Cliente_Event: String;
+    class function GetImport_Item_Event: String;
+    class function GetExport_Item_Event: String;
+    class function GetImport_Pedido_Event: String;
+    class function GetExport_Pedido_Event: String;
   end;
 
   (**
@@ -216,6 +443,8 @@ const
 
 type
   TCliente = class;
+  TItem = class;
+  TPedido = class;
   TNotifyUserEventPayload = class;
   TEmailNotifyUserEventPayload = class;
   TPushNotifyUserEventPayload = class;
@@ -233,18 +462,36 @@ type
   TDependency = class;
   THelloWorldInput = class;
   THelloWorldOutput = class;
+  TListaItemManualInput = class;
+  TListaItemManualOutput = class;
   TGetMetadataInput = class;
   TGetMetadataOutput = class;
   TImportClienteInput = class;
   TImportClienteOutput = class;
   TExportClienteInput = class;
   TExportClienteOutput = class;
+  TImportItemInput = class;
+  TImportItemOutput = class;
+  TExportItemInput = class;
+  TExportItemOutput = class;
+  TImportPedidoInput = class;
+  TImportPedidoOutput = class;
+  TExportPedidoInput = class;
+  TExportPedidoOutput = class;
   TCreateBulkClienteInput = class;
   TCreateBulkClienteOutput = class;
+  TCreateBulkItemInput = class;
+  TCreateBulkItemOutput = class;
+  TCreateBulkPedidoInput = class;
+  TCreateBulkPedidoOutput = class;
   TGetDependenciesOutput = class;
   TServiceStartedPayload = class;
   TImportClienteEventPayload = class;
   TExportClienteEventPayload = class;
+  TImportItemEventPayload = class;
+  TExportItemEventPayload = class;
+  TImportPedidoEventPayload = class;
+  TExportPedidoEventPayload = class;
   
   (**
    * Entidade que representa o cliente
@@ -320,6 +567,141 @@ type
   end;
   
   TClientePagedResults = class(TPersistent)
+  private
+    FContents: TList;
+  public
+    property Contents: TList read FContents write FContents;
+  end;  
+  
+  (**
+   * Item do pedido
+   *)
+  TItem = class(TNullPrimitivesHandler)
+  private
+    FNullDescricao: Boolean;
+    FNullQuantidade: Boolean;
+    FNullValorUnitario: Boolean;
+    FId: TPersistent;
+    FDescricao: String;
+    FQuantidade: Double;
+    FValorUnitario: Double;
+    procedure SetDescricao(aValue: String);
+    procedure SetQuantidade(aValue: Double);
+    procedure SetValorUnitario(aValue: Double);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    property DescricaoIsNull: Boolean read FNullDescricao write FNullDescricao;
+    property QuantidadeIsNull: Boolean read FNullQuantidade write FNullQuantidade;
+    property ValorUnitarioIsNull: Boolean read FNullValorUnitario write FNullValorUnitario;
+  published
+    (**
+     * Chave primária
+     *)
+    property Id: TPersistent read FId write FId;
+    (**
+     * descrição
+     *)
+    property Descricao: String read FDescricao write SetDescricao;
+    (**
+     * quantidade
+     *)
+    property Quantidade: Double read FQuantidade write SetQuantidade;
+    (**
+     * valor unitário
+     *)
+    property ValorUnitario: Double read FValorUnitario write SetValorUnitario;
+  end;
+  
+  TItemId = class(TPersistent)
+  private
+    FId: String;
+  public
+    property Id: String read FId write FId;
+  end;
+  
+  TItemPageRequest = class(TPersistent)
+  private
+    FOffset: LongInt;
+    FSize: Integer;
+  public
+    property Offset: LongInt read FOffset write FOffset;
+    property Size: Integer read FSize write FSize;
+  end;
+  
+  TItemPagedResults = class(TPersistent)
+  private
+    FContents: TList;
+  public
+    property Contents: TList read FContents write FContents;
+  end;  
+  
+  (**
+   * Pedido
+   *)
+  TPedido = class(TNullPrimitivesHandler)
+  private
+    FNullObservacoes: Boolean;
+    FId: TPersistent;
+    FData: TSDLDate;
+    FObservacoes: String;
+    FCliente: TCliente;
+    FItens: TSDLObjectList;
+    procedure SetObservacoes(aValue: String);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    procedure AddItens(aItem: TItem);
+    function GetItens(aIndex: Integer): TItem;
+    property ObservacoesIsNull: Boolean read FNullObservacoes write FNullObservacoes;
+  published
+    (**
+     * Chave primaria
+     *)
+    property Id: TPersistent read FId write FId;
+    (**
+     * Data do pedido
+     *)
+    property Data: TSDLDate read FData write FData;
+    (**
+     * Observações do pedido
+     *)
+    property Observacoes: String read FObservacoes write SetObservacoes;
+    (**
+     * Cliente do pedido
+     *)
+    property Cliente: TCliente read FCliente write FCliente;
+    (**
+     * Itens do pedido
+     *)
+    property Itens: TSDLObjectList read FItens;
+  end;
+  
+  TPedidoId = class(TPersistent)
+  private
+    FId: String;
+  public
+    property Id: String read FId write FId;
+  end;
+  
+  TPedidoPageRequest = class(TPersistent)
+  private
+    FOffset: LongInt;
+    FSize: Integer;
+  public
+    property Offset: LongInt read FOffset write FOffset;
+    property Size: Integer read FSize write FSize;
+  end;
+  
+  TPedidoPagedResults = class(TPersistent)
   private
     FContents: TList;
   public
@@ -975,6 +1357,34 @@ type
     property HelloWorldMessage: String read FHelloWorldMessage write SetHelloWorldMessage;
   end;
   
+  TListaItemManualInput = class(TNullPrimitivesHandler)
+  private
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+  end;
+  
+  TListaItemManualOutput = class(TNullPrimitivesHandler)
+  private
+    FListItens: TSDLObjectList;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    procedure AddListItens(aItem: TItem);
+    function GetListItens(aIndex: Integer): TItem;
+  published
+    property ListItens: TSDLObjectList read FListItens;
+  end;
+  
   TGetMetadataInput = class(TNullPrimitivesHandler)
   private
     FNullMetadataFormat: Boolean;
@@ -1071,6 +1481,130 @@ type
     property ExportJobId: String read FExportJobId write SetExportJobId;
   end;
   
+  TImportItemInput = class(TNullPrimitivesHandler)
+  private
+    FConfig: TImportConfig;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Config: TImportConfig read FConfig write FConfig;
+  end;
+  
+  TImportItemOutput = class(TNullPrimitivesHandler)
+  private
+    FNullImportJobId: Boolean;
+    FImportJobId: String;
+    procedure SetImportJobId(aValue: String);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    property ImportJobIdIsNull: Boolean read FNullImportJobId write FNullImportJobId;
+  published
+    property ImportJobId: String read FImportJobId write SetImportJobId;
+  end;
+  
+  TExportItemInput = class(TNullPrimitivesHandler)
+  private
+    FConfig: TExportConfig;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Config: TExportConfig read FConfig write FConfig;
+  end;
+  
+  TExportItemOutput = class(TNullPrimitivesHandler)
+  private
+    FNullExportJobId: Boolean;
+    FExportJobId: String;
+    procedure SetExportJobId(aValue: String);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    property ExportJobIdIsNull: Boolean read FNullExportJobId write FNullExportJobId;
+  published
+    property ExportJobId: String read FExportJobId write SetExportJobId;
+  end;
+  
+  TImportPedidoInput = class(TNullPrimitivesHandler)
+  private
+    FConfig: TImportConfig;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Config: TImportConfig read FConfig write FConfig;
+  end;
+  
+  TImportPedidoOutput = class(TNullPrimitivesHandler)
+  private
+    FNullImportJobId: Boolean;
+    FImportJobId: String;
+    procedure SetImportJobId(aValue: String);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    property ImportJobIdIsNull: Boolean read FNullImportJobId write FNullImportJobId;
+  published
+    property ImportJobId: String read FImportJobId write SetImportJobId;
+  end;
+  
+  TExportPedidoInput = class(TNullPrimitivesHandler)
+  private
+    FConfig: TExportConfig;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Config: TExportConfig read FConfig write FConfig;
+  end;
+  
+  TExportPedidoOutput = class(TNullPrimitivesHandler)
+  private
+    FNullExportJobId: Boolean;
+    FExportJobId: String;
+    procedure SetExportJobId(aValue: String);
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    property ExportJobIdIsNull: Boolean read FNullExportJobId write FNullExportJobId;
+  published
+    property ExportJobId: String read FExportJobId write SetExportJobId;
+  end;
+  
   TCreateBulkClienteInput = class(TNullPrimitivesHandler)
   private
     FEntities: TSDLObjectList;
@@ -1091,6 +1625,68 @@ type
   end;
   
   TCreateBulkClienteOutput = class(TNullPrimitivesHandler)
+  private
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+  end;
+  
+  TCreateBulkItemInput = class(TNullPrimitivesHandler)
+  private
+    FEntities: TSDLObjectList;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    procedure AddEntities(aItem: TItem);
+    function GetEntities(aIndex: Integer): TItem;
+  published
+    (**
+     * Entities for bulk creation
+     *)
+    property Entities: TSDLObjectList read FEntities;
+  end;
+  
+  TCreateBulkItemOutput = class(TNullPrimitivesHandler)
+  private
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+  end;
+  
+  TCreateBulkPedidoInput = class(TNullPrimitivesHandler)
+  private
+    FEntities: TSDLObjectList;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+    procedure AddEntities(aItem: TPedido);
+    function GetEntities(aIndex: Integer): TPedido;
+  published
+    (**
+     * Entities for bulk creation
+     *)
+    property Entities: TSDLObjectList read FEntities;
+  end;
+  
+  TCreateBulkPedidoOutput = class(TNullPrimitivesHandler)
   private
   public
     procedure AfterConstruction; override;
@@ -1171,6 +1767,62 @@ type
     property Eventpl: TExportEventStatus read FEventpl write FEventpl;
   end;
   
+  TImportItemEventPayload = class(TNullPrimitivesHandler)
+  private
+    FEventpl: TImportEventStatus;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Eventpl: TImportEventStatus read FEventpl write FEventpl;
+  end;
+  
+  TExportItemEventPayload = class(TNullPrimitivesHandler)
+  private
+    FEventpl: TExportEventStatus;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Eventpl: TExportEventStatus read FEventpl write FEventpl;
+  end;
+  
+  TImportPedidoEventPayload = class(TNullPrimitivesHandler)
+  private
+    FEventpl: TImportEventStatus;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Eventpl: TImportEventStatus read FEventpl write FEventpl;
+  end;
+  
+  TExportPedidoEventPayload = class(TNullPrimitivesHandler)
+  private
+    FEventpl: TExportEventStatus;
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    function GetContext: String; override;
+    function IsNullProperty(aPropertyName: String): Boolean; override;
+    procedure Validate; overload;
+    procedure Validate(aValidated: TList); overload;
+  published
+    property Eventpl: TExportEventStatus read FEventpl write FEventpl;
+  end;
+  
   (**
    * Validators for payloads accepted/produced by endpoints in hello_world.
    *)
@@ -1180,8 +1832,16 @@ type
     class procedure Validate(aToValidate: THelloWorldInput; aValidated: TList); overload;
     class procedure Validate(aToValidate: THelloWorldOutput); overload;
     class procedure Validate(aToValidate: THelloWorldOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TListaItemManualInput); overload;
+    class procedure Validate(aToValidate: TListaItemManualInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TListaItemManualOutput); overload;
+    class procedure Validate(aToValidate: TListaItemManualOutput; aValidated: TList); overload;
     class procedure Validate(aToValidate: TCliente); overload;
     class procedure Validate(aToValidate: TCliente; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TItem); overload;
+    class procedure Validate(aToValidate: TItem; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TPedido); overload;
+    class procedure Validate(aToValidate: TPedido; aValidated: TList); overload;
     class procedure Validate(aToValidate: TServiceStartedPayload); overload;
     class procedure Validate(aToValidate: TServiceStartedPayload; aValidated: TList); overload;
     class procedure Validate(aToValidate: TNotifyUserEventPayload); overload;
@@ -1228,10 +1888,42 @@ type
     class procedure Validate(aToValidate: TImportClienteEventPayload; aValidated: TList); overload;
     class procedure Validate(aToValidate: TExportClienteEventPayload); overload;
     class procedure Validate(aToValidate: TExportClienteEventPayload; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportItemInput); overload;
+    class procedure Validate(aToValidate: TImportItemInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportItemOutput); overload;
+    class procedure Validate(aToValidate: TImportItemOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportItemInput); overload;
+    class procedure Validate(aToValidate: TExportItemInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportItemOutput); overload;
+    class procedure Validate(aToValidate: TExportItemOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportItemEventPayload); overload;
+    class procedure Validate(aToValidate: TImportItemEventPayload; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportItemEventPayload); overload;
+    class procedure Validate(aToValidate: TExportItemEventPayload; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportPedidoInput); overload;
+    class procedure Validate(aToValidate: TImportPedidoInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportPedidoOutput); overload;
+    class procedure Validate(aToValidate: TImportPedidoOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportPedidoInput); overload;
+    class procedure Validate(aToValidate: TExportPedidoInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportPedidoOutput); overload;
+    class procedure Validate(aToValidate: TExportPedidoOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TImportPedidoEventPayload); overload;
+    class procedure Validate(aToValidate: TImportPedidoEventPayload; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TExportPedidoEventPayload); overload;
+    class procedure Validate(aToValidate: TExportPedidoEventPayload; aValidated: TList); overload;
     class procedure Validate(aToValidate: TCreateBulkClienteInput); overload;
     class procedure Validate(aToValidate: TCreateBulkClienteInput; aValidated: TList); overload;
     class procedure Validate(aToValidate: TCreateBulkClienteOutput); overload;
     class procedure Validate(aToValidate: TCreateBulkClienteOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TCreateBulkItemInput); overload;
+    class procedure Validate(aToValidate: TCreateBulkItemInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TCreateBulkItemOutput); overload;
+    class procedure Validate(aToValidate: TCreateBulkItemOutput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TCreateBulkPedidoInput); overload;
+    class procedure Validate(aToValidate: TCreateBulkPedidoInput; aValidated: TList); overload;
+    class procedure Validate(aToValidate: TCreateBulkPedidoOutput); overload;
+    class procedure Validate(aToValidate: TCreateBulkPedidoOutput; aValidated: TList); overload;
     class procedure Validate(aToValidate: TDependency); overload;
     class procedure Validate(aToValidate: TDependency; aValidated: TList); overload;
     class procedure Validate(aToValidate: TGetDependenciesOutput); overload;
@@ -1276,6 +1968,16 @@ begin
   Result := 'helloWorldResponse';
 end;
 
+class function TCommands.GetLista_Item_Manual: String;
+begin
+  Result := 'listaItemManual';
+end;
+
+class function TCommands.GetLista_Item_Manual_Response: String;
+begin
+  Result := 'listaItemManualResponse';
+end;
+
 class function TCommands.GetGet_Metadata: String;
 begin
   Result := 'getMetadata';
@@ -1314,6 +2016,46 @@ end;
 class function TCommands.GetExport_Cliente_Response: String;
 begin
   Result := 'exportClienteResponse';
+end;
+
+class function TCommands.GetImport_Item: String;
+begin
+  Result := 'importItem';
+end;
+
+class function TCommands.GetImport_Item_Response: String;
+begin
+  Result := 'importItemResponse';
+end;
+
+class function TCommands.GetExport_Item: String;
+begin
+  Result := 'exportItem';
+end;
+
+class function TCommands.GetExport_Item_Response: String;
+begin
+  Result := 'exportItemResponse';
+end;
+
+class function TCommands.GetImport_Pedido: String;
+begin
+  Result := 'importPedido';
+end;
+
+class function TCommands.GetImport_Pedido_Response: String;
+begin
+  Result := 'importPedidoResponse';
+end;
+
+class function TCommands.GetExport_Pedido: String;
+begin
+  Result := 'exportPedido';
+end;
+
+class function TCommands.GetExport_Pedido_Response: String;
+begin
+  Result := 'exportPedidoResponse';
 end;
 
 class function TCommands.GetCreate_Cliente: String;
@@ -1396,6 +2138,166 @@ begin
   Result := 'listClienteResponse';
 end;
 
+class function TCommands.GetCreate_Item: String;
+begin
+  Result := 'createItem';
+end;
+
+class function TCommands.GetCreate_Item_Response: String;
+begin
+  Result := 'createItemResponse';
+end;
+
+class function TCommands.GetCreate_Bulk_Item: String;
+begin
+  Result := 'createBulkItem';
+end;
+
+class function TCommands.GetCreate_Bulk_Item_Response: String;
+begin
+  Result := 'createBulkItemResponse';
+end;
+
+class function TCommands.GetCreate_Merge_Item: String;
+begin
+  Result := 'createMergeItem';
+end;
+
+class function TCommands.GetCreate_Merge_Item_Response: String;
+begin
+  Result := 'createMergeItemResponse';
+end;
+
+class function TCommands.GetRetrieve_Item: String;
+begin
+  Result := 'retrieveItem';
+end;
+
+class function TCommands.GetRetrieve_Item_Response: String;
+begin
+  Result := 'retrieveItemResponse';
+end;
+
+class function TCommands.GetUpdate_Item: String;
+begin
+  Result := 'updateItem';
+end;
+
+class function TCommands.GetUpdate_Item_Response: String;
+begin
+  Result := 'updateItemResponse';
+end;
+
+class function TCommands.GetUpdate_Merge_Item: String;
+begin
+  Result := 'updateMergeItem';
+end;
+
+class function TCommands.GetUpdate_Merge_Item_Response: String;
+begin
+  Result := 'updateMergeItemResponse';
+end;
+
+class function TCommands.GetDelete_Item: String;
+begin
+  Result := 'deleteItem';
+end;
+
+class function TCommands.GetDelete_Item_Response: String;
+begin
+  Result := 'deleteItemResponse';
+end;
+
+class function TCommands.GetList_Item: String;
+begin
+  Result := 'listItem';
+end;
+
+class function TCommands.GetList_Item_Response: String;
+begin
+  Result := 'listItemResponse';
+end;
+
+class function TCommands.GetCreate_Pedido: String;
+begin
+  Result := 'createPedido';
+end;
+
+class function TCommands.GetCreate_Pedido_Response: String;
+begin
+  Result := 'createPedidoResponse';
+end;
+
+class function TCommands.GetCreate_Bulk_Pedido: String;
+begin
+  Result := 'createBulkPedido';
+end;
+
+class function TCommands.GetCreate_Bulk_Pedido_Response: String;
+begin
+  Result := 'createBulkPedidoResponse';
+end;
+
+class function TCommands.GetCreate_Merge_Pedido: String;
+begin
+  Result := 'createMergePedido';
+end;
+
+class function TCommands.GetCreate_Merge_Pedido_Response: String;
+begin
+  Result := 'createMergePedidoResponse';
+end;
+
+class function TCommands.GetRetrieve_Pedido: String;
+begin
+  Result := 'retrievePedido';
+end;
+
+class function TCommands.GetRetrieve_Pedido_Response: String;
+begin
+  Result := 'retrievePedidoResponse';
+end;
+
+class function TCommands.GetUpdate_Pedido: String;
+begin
+  Result := 'updatePedido';
+end;
+
+class function TCommands.GetUpdate_Pedido_Response: String;
+begin
+  Result := 'updatePedidoResponse';
+end;
+
+class function TCommands.GetUpdate_Merge_Pedido: String;
+begin
+  Result := 'updateMergePedido';
+end;
+
+class function TCommands.GetUpdate_Merge_Pedido_Response: String;
+begin
+  Result := 'updateMergePedidoResponse';
+end;
+
+class function TCommands.GetDelete_Pedido: String;
+begin
+  Result := 'deletePedido';
+end;
+
+class function TCommands.GetDelete_Pedido_Response: String;
+begin
+  Result := 'deletePedidoResponse';
+end;
+
+class function TCommands.GetList_Pedido: String;
+begin
+  Result := 'listPedido';
+end;
+
+class function TCommands.GetList_Pedido_Response: String;
+begin
+  Result := 'listPedidoResponse';
+end;
+
 class function TCommands.GetGet_Dependencies: String;
 begin
   Result := 'getDependencies';
@@ -1426,6 +2328,26 @@ end;
 class function TEvents.GetExport_Cliente_Event: String;
 begin
   Result := 'exportClienteEvent';
+end;
+
+class function TEvents.GetImport_Item_Event: String;
+begin
+  Result := 'importItemEvent';
+end;
+
+class function TEvents.GetExport_Item_Event: String;
+begin
+  Result := 'exportItemEvent';
+end;
+
+class function TEvents.GetImport_Pedido_Event: String;
+begin
+  Result := 'importPedidoEvent';
+end;
+
+class function TEvents.GetExport_Pedido_Event: String;
+begin
+  Result := 'exportPedidoEvent';
 end;
 
 function Contains(aList: TList; aItem: TObject): Boolean;
@@ -1534,6 +2456,152 @@ procedure TCliente.Validate(aValidated: TList);
 begin
   THelloWorldValidator.Validate(self, aValidated);
 end;
+
+{ TItem }
+
+procedure TItem.SetDescricao(aValue: String);
+begin
+  FDescricao := aValue;
+  FNullDescricao := False;
+end;
+
+procedure TItem.SetQuantidade(aValue: Double);
+begin
+  FQuantidade := aValue;
+  FNullQuantidade := False;
+end;
+
+procedure TItem.SetValorUnitario(aValue: Double);
+begin
+  FValorUnitario := aValue;
+  FNullValorUnitario := False;
+end;
+
+procedure TItem.AfterConstruction;
+begin
+  inherited;
+  FNullDescricao := True;
+  FNullQuantidade := True;
+  FNullValorUnitario := True;
+  FId := nil;
+end;
+
+procedure TItem.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TItem.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TItem.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'Descricao') then
+  begin
+    Result := FNullDescricao;
+    Exit;
+  end;
+  
+  if SameText(aPropertyName, 'Quantidade') then
+  begin
+    Result := FNullQuantidade;
+    Exit;
+  end;
+  
+  if SameText(aPropertyName, 'ValorUnitario') then
+  begin
+    Result := FNullValorUnitario;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TItem.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TItem.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TPedido }
+
+procedure TPedido.SetObservacoes(aValue: String);
+begin
+  FObservacoes := aValue;
+  FNullObservacoes := False;
+end;
+
+procedure TPedido.AfterConstruction;
+begin
+  inherited;
+  FNullObservacoes := True;
+  FId := nil;
+  FData := nil;
+  FCliente := nil;
+  FItens := TSDLObjectList.Create(TItem);
+end;
+
+procedure TPedido.BeforeDestruction;
+begin
+  FreeAndNil(FItens);
+  inherited;
+end;
+
+function TPedido.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TPedido.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'Observacoes') then
+  begin
+    Result := FNullObservacoes;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TPedido.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TPedido.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+procedure TPedido.AddItens(aItem: TItem);
+begin
+  FItens.Add(aItem);
+end;		
+
+function TPedido.GetItens(aIndex: Integer): TItem;
+begin
+  Result := TItem(FItens[aIndex]);
+end;		
 
 { TNotifyUserEventPayload }
 
@@ -3111,6 +4179,96 @@ begin
   THelloWorldValidator.Validate(self, aValidated);
 end;
 
+{ TListaItemManualInput }
+
+procedure TListaItemManualInput.AfterConstruction;
+begin
+  inherited;
+end;
+
+procedure TListaItemManualInput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TListaItemManualInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TListaItemManualInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TListaItemManualInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TListaItemManualInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TListaItemManualOutput }
+
+procedure TListaItemManualOutput.AfterConstruction;
+begin
+  inherited;
+  FListItens := TSDLObjectList.Create(TItem);
+end;
+
+procedure TListaItemManualOutput.BeforeDestruction;
+begin
+  FreeAndNil(FListItens);
+  inherited;
+end;
+
+function TListaItemManualOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TListaItemManualOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TListaItemManualOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TListaItemManualOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+procedure TListaItemManualOutput.AddListItens(aItem: TItem);
+begin
+  FListItens.Add(aItem);
+end;		
+
+function TListaItemManualOutput.GetListItens(aIndex: Integer): TItem;
+begin
+  Result := TItem(FListItens[aIndex]);
+end;		
+
 { TGetMetadataInput }
 
 procedure TGetMetadataInput.SetMetadataFormat(aValue: String);
@@ -3399,6 +4557,374 @@ begin
   THelloWorldValidator.Validate(self, aValidated);
 end;
 
+{ TImportItemInput }
+
+procedure TImportItemInput.AfterConstruction;
+begin
+  inherited;
+  FConfig := nil;
+end;
+
+procedure TImportItemInput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportItemInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportItemInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TImportItemInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportItemInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TImportItemOutput }
+
+procedure TImportItemOutput.SetImportJobId(aValue: String);
+begin
+  FImportJobId := aValue;
+  FNullImportJobId := False;
+end;
+
+procedure TImportItemOutput.AfterConstruction;
+begin
+  inherited;
+  FNullImportJobId := True;
+end;
+
+procedure TImportItemOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportItemOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportItemOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'ImportJobId') then
+  begin
+    Result := FNullImportJobId;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TImportItemOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportItemOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportItemInput }
+
+procedure TExportItemInput.AfterConstruction;
+begin
+  inherited;
+  FConfig := nil;
+end;
+
+procedure TExportItemInput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportItemInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportItemInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TExportItemInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportItemInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportItemOutput }
+
+procedure TExportItemOutput.SetExportJobId(aValue: String);
+begin
+  FExportJobId := aValue;
+  FNullExportJobId := False;
+end;
+
+procedure TExportItemOutput.AfterConstruction;
+begin
+  inherited;
+  FNullExportJobId := True;
+end;
+
+procedure TExportItemOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportItemOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportItemOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'ExportJobId') then
+  begin
+    Result := FNullExportJobId;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TExportItemOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportItemOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TImportPedidoInput }
+
+procedure TImportPedidoInput.AfterConstruction;
+begin
+  inherited;
+  FConfig := nil;
+end;
+
+procedure TImportPedidoInput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportPedidoInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportPedidoInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TImportPedidoInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportPedidoInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TImportPedidoOutput }
+
+procedure TImportPedidoOutput.SetImportJobId(aValue: String);
+begin
+  FImportJobId := aValue;
+  FNullImportJobId := False;
+end;
+
+procedure TImportPedidoOutput.AfterConstruction;
+begin
+  inherited;
+  FNullImportJobId := True;
+end;
+
+procedure TImportPedidoOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportPedidoOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportPedidoOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'ImportJobId') then
+  begin
+    Result := FNullImportJobId;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TImportPedidoOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportPedidoOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportPedidoInput }
+
+procedure TExportPedidoInput.AfterConstruction;
+begin
+  inherited;
+  FConfig := nil;
+end;
+
+procedure TExportPedidoInput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportPedidoInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportPedidoInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TExportPedidoInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportPedidoInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportPedidoOutput }
+
+procedure TExportPedidoOutput.SetExportJobId(aValue: String);
+begin
+  FExportJobId := aValue;
+  FNullExportJobId := False;
+end;
+
+procedure TExportPedidoOutput.AfterConstruction;
+begin
+  inherited;
+  FNullExportJobId := True;
+end;
+
+procedure TExportPedidoOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportPedidoOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportPedidoOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  if SameText(aPropertyName, 'ExportJobId') then
+  begin
+    Result := FNullExportJobId;
+    Exit;
+  end;
+  
+  Result := False;
+end;
+
+procedure TExportPedidoOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportPedidoOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
 { TCreateBulkClienteInput }
 
 procedure TCreateBulkClienteInput.AfterConstruction;
@@ -3485,6 +5011,186 @@ begin
 end;
 
 procedure TCreateBulkClienteOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TCreateBulkItemInput }
+
+procedure TCreateBulkItemInput.AfterConstruction;
+begin
+  inherited;
+  FEntities := TSDLObjectList.Create(TItem);
+end;
+
+procedure TCreateBulkItemInput.BeforeDestruction;
+begin
+  FreeAndNil(FEntities);
+  inherited;
+end;
+
+function TCreateBulkItemInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TCreateBulkItemInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TCreateBulkItemInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TCreateBulkItemInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+procedure TCreateBulkItemInput.AddEntities(aItem: TItem);
+begin
+  FEntities.Add(aItem);
+end;		
+
+function TCreateBulkItemInput.GetEntities(aIndex: Integer): TItem;
+begin
+  Result := TItem(FEntities[aIndex]);
+end;		
+
+{ TCreateBulkItemOutput }
+
+procedure TCreateBulkItemOutput.AfterConstruction;
+begin
+  inherited;
+end;
+
+procedure TCreateBulkItemOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TCreateBulkItemOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TCreateBulkItemOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TCreateBulkItemOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TCreateBulkItemOutput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TCreateBulkPedidoInput }
+
+procedure TCreateBulkPedidoInput.AfterConstruction;
+begin
+  inherited;
+  FEntities := TSDLObjectList.Create(TPedido);
+end;
+
+procedure TCreateBulkPedidoInput.BeforeDestruction;
+begin
+  FreeAndNil(FEntities);
+  inherited;
+end;
+
+function TCreateBulkPedidoInput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TCreateBulkPedidoInput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TCreateBulkPedidoInput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TCreateBulkPedidoInput.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+procedure TCreateBulkPedidoInput.AddEntities(aItem: TPedido);
+begin
+  FEntities.Add(aItem);
+end;		
+
+function TCreateBulkPedidoInput.GetEntities(aIndex: Integer): TPedido;
+begin
+  Result := TPedido(FEntities[aIndex]);
+end;		
+
+{ TCreateBulkPedidoOutput }
+
+procedure TCreateBulkPedidoOutput.AfterConstruction;
+begin
+  inherited;
+end;
+
+procedure TCreateBulkPedidoOutput.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TCreateBulkPedidoOutput.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TCreateBulkPedidoOutput.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TCreateBulkPedidoOutput.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TCreateBulkPedidoOutput.Validate(aValidated: TList);
 begin
   THelloWorldValidator.Validate(self, aValidated);
 end;
@@ -3685,6 +5391,166 @@ begin
   THelloWorldValidator.Validate(self, aValidated);
 end;
 
+{ TImportItemEventPayload }
+
+procedure TImportItemEventPayload.AfterConstruction;
+begin
+  inherited;
+  FEventpl := nil;
+end;
+
+procedure TImportItemEventPayload.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportItemEventPayload.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportItemEventPayload.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TImportItemEventPayload.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportItemEventPayload.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportItemEventPayload }
+
+procedure TExportItemEventPayload.AfterConstruction;
+begin
+  inherited;
+  FEventpl := nil;
+end;
+
+procedure TExportItemEventPayload.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportItemEventPayload.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportItemEventPayload.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TExportItemEventPayload.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportItemEventPayload.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TImportPedidoEventPayload }
+
+procedure TImportPedidoEventPayload.AfterConstruction;
+begin
+  inherited;
+  FEventpl := nil;
+end;
+
+procedure TImportPedidoEventPayload.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TImportPedidoEventPayload.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TImportPedidoEventPayload.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TImportPedidoEventPayload.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TImportPedidoEventPayload.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
+{ TExportPedidoEventPayload }
+
+procedure TExportPedidoEventPayload.AfterConstruction;
+begin
+  inherited;
+  FEventpl := nil;
+end;
+
+procedure TExportPedidoEventPayload.BeforeDestruction;
+begin
+  inherited;
+end;
+
+function TExportPedidoEventPayload.GetContext: String;
+begin
+  Result := cDomain + '.' + cService;
+end;
+
+function TExportPedidoEventPayload.IsNullProperty(aPropertyName: String): Boolean;
+begin
+  Result := False;
+end;
+
+procedure TExportPedidoEventPayload.Validate;
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+procedure TExportPedidoEventPayload.Validate(aValidated: TList);
+begin
+  THelloWorldValidator.Validate(self, aValidated);
+end;
+
 { THelloWorldValidator }
   
 class procedure THelloWorldValidator.Validate(aToValidate: THelloWorldInput);
@@ -3729,6 +5595,51 @@ begin
     raise EIllegalArgumentException.Create('HelloWorldMessage is required');    
 end;
 
+class procedure THelloWorldValidator.Validate(aToValidate: TListaItemManualInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TListaItemManualInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  // no validation required
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TListaItemManualOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TListaItemManualOutput; aValidated: TList);
+var
+  i: Integer;
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.ListItens = nil) or (aToValidate.ListItens.Count = 0) then
+    raise EIllegalArgumentException.Create('listItens is required, at least one value must be present');
+  for i := 0 to aToValidate.ListItens.Count - 1 do
+    Validate(TItem(aToValidate.ListItens[i]), aValidated);
+end;
+
 class procedure THelloWorldValidator.Validate(aToValidate: TCliente);
 var
   xValidated: TList;
@@ -3752,6 +5663,61 @@ begin
     raise EIllegalArgumentException.Create('DataNascimento is required');    
   if (aToValidate.CpfIsNull) then
     raise EIllegalArgumentException.Create('Cpf is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TItem);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TItem; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.DescricaoIsNull) then
+    raise EIllegalArgumentException.Create('Descricao is required');    
+  if (aToValidate.QuantidadeIsNull) then
+    raise EIllegalArgumentException.Create('Quantidade is required');    
+  if (aToValidate.ValorUnitarioIsNull) then
+    raise EIllegalArgumentException.Create('ValorUnitario is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TPedido);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TPedido; aValidated: TList);
+var
+  i: Integer;
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Data = nil) then
+    raise EIllegalArgumentException.Create('Data is required');    
+  if (aToValidate.Cliente = nil) then
+    raise EIllegalArgumentException.Create('Cliente is required');    
+  Validate(aToValidate.Cliente, aValidated);
+  if (aToValidate.Itens = nil) or (aToValidate.Itens.Count = 0) then
+    raise EIllegalArgumentException.Create('itens is required, at least one value must be present');
+  for i := 0 to aToValidate.Itens.Count - 1 do
+    Validate(TItem(aToValidate.Itens[i]), aValidated);
 end;
 
 class procedure THelloWorldValidator.Validate(aToValidate: TServiceStartedPayload);
@@ -4340,6 +6306,266 @@ begin
   Validate(aToValidate.Eventpl, aValidated);
 end;
 
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Config = nil) then
+    raise EIllegalArgumentException.Create('Config is required');    
+  Validate(aToValidate.Config, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.ImportJobIdIsNull) then
+    raise EIllegalArgumentException.Create('ImportJobId is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Config = nil) then
+    raise EIllegalArgumentException.Create('Config is required');    
+  Validate(aToValidate.Config, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.ExportJobIdIsNull) then
+    raise EIllegalArgumentException.Create('ExportJobId is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemEventPayload);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportItemEventPayload; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Eventpl = nil) then
+    raise EIllegalArgumentException.Create('Eventpl is required');    
+  Validate(aToValidate.Eventpl, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemEventPayload);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportItemEventPayload; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Eventpl = nil) then
+    raise EIllegalArgumentException.Create('Eventpl is required');    
+  Validate(aToValidate.Eventpl, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Config = nil) then
+    raise EIllegalArgumentException.Create('Config is required');    
+  Validate(aToValidate.Config, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.ImportJobIdIsNull) then
+    raise EIllegalArgumentException.Create('ImportJobId is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Config = nil) then
+    raise EIllegalArgumentException.Create('Config is required');    
+  Validate(aToValidate.Config, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.ExportJobIdIsNull) then
+    raise EIllegalArgumentException.Create('ExportJobId is required');    
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoEventPayload);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TImportPedidoEventPayload; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Eventpl = nil) then
+    raise EIllegalArgumentException.Create('Eventpl is required');    
+  Validate(aToValidate.Eventpl, aValidated);
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoEventPayload);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TExportPedidoEventPayload; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Eventpl = nil) then
+    raise EIllegalArgumentException.Create('Eventpl is required');    
+  Validate(aToValidate.Eventpl, aValidated);
+end;
+
 class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkClienteInput);
 var
   xValidated: TList;
@@ -4374,6 +6600,88 @@ begin
 end;
 
 class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkClienteOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  // no validation required
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkItemInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkItemInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Entities = nil) or (aToValidate.Entities.Count = 0) then
+    raise EIllegalArgumentException.Create('entities is required, at least one value must be present');
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkItemOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkItemOutput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  // no validation required
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkPedidoInput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkPedidoInput; aValidated: TList);
+begin
+  if Contains(aValidated, aToValidate) then
+    Exit;
+  aValidated.Add(aToValidate);
+  if (aToValidate.Entities = nil) or (aToValidate.Entities.Count = 0) then
+    raise EIllegalArgumentException.Create('entities is required, at least one value must be present');
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkPedidoOutput);
+var
+  xValidated: TList;
+begin
+  xValidated := TList.Create;
+  try
+    Validate(aToValidate, xValidated);
+  finally
+    xValidated.Destroy;
+  end;
+end;
+
+class procedure THelloWorldValidator.Validate(aToValidate: TCreateBulkPedidoOutput; aValidated: TList);
 begin
   if Contains(aValidated, aToValidate) then
     Exit;
@@ -4492,6 +6800,10 @@ initialization
   RegisterJsonClass('examples.hello_world', TClientePagedResults);
   RegisterJsonClass('examples.hello_world', TCreateBulkClienteInput);
   RegisterJsonClass('examples.hello_world', TCreateBulkClienteOutput);
+  RegisterJsonClass('examples.hello_world', TCreateBulkItemInput);
+  RegisterJsonClass('examples.hello_world', TCreateBulkItemOutput);
+  RegisterJsonClass('examples.hello_world', TCreateBulkPedidoInput);
+  RegisterJsonClass('examples.hello_world', TCreateBulkPedidoOutput);
   RegisterJsonClass('examples.hello_world', TDependency);
   RegisterJsonClass('examples.hello_world', TEmailNotifyUserEventPayload);
   RegisterJsonClass('examples.hello_world', TExportClienteEventPayload);
@@ -4499,6 +6811,12 @@ initialization
   RegisterJsonClass('examples.hello_world', TExportClienteOutput);
   RegisterJsonClass('examples.hello_world', TExportConfig);
   RegisterJsonClass('examples.hello_world', TExportEventStatus);
+  RegisterJsonClass('examples.hello_world', TExportItemEventPayload);
+  RegisterJsonClass('examples.hello_world', TExportItemInput);
+  RegisterJsonClass('examples.hello_world', TExportItemOutput);
+  RegisterJsonClass('examples.hello_world', TExportPedidoEventPayload);
+  RegisterJsonClass('examples.hello_world', TExportPedidoInput);
+  RegisterJsonClass('examples.hello_world', TExportPedidoOutput);
   RegisterJsonClass('examples.hello_world', TFielddto);
   RegisterJsonClass('examples.hello_world', TGetDependenciesOutput);
   RegisterJsonClass('examples.hello_world', TGetMetadataInput);
@@ -4512,9 +6830,23 @@ initialization
   RegisterJsonClass('examples.hello_world', TImportConfig);
   RegisterJsonClass('examples.hello_world', TImportError);
   RegisterJsonClass('examples.hello_world', TImportEventStatus);
+  RegisterJsonClass('examples.hello_world', TImportItemEventPayload);
+  RegisterJsonClass('examples.hello_world', TImportItemInput);
+  RegisterJsonClass('examples.hello_world', TImportItemOutput);
+  RegisterJsonClass('examples.hello_world', TImportPedidoEventPayload);
+  RegisterJsonClass('examples.hello_world', TImportPedidoInput);
+  RegisterJsonClass('examples.hello_world', TImportPedidoOutput);
   RegisterJsonClass('examples.hello_world', TImportReport);
+  RegisterJsonClass('examples.hello_world', TItem);
+  RegisterJsonClass('examples.hello_world', TItemPageRequest);
+  RegisterJsonClass('examples.hello_world', TItemPagedResults);
   RegisterJsonClass('examples.hello_world', TLayoutdto);
+  RegisterJsonClass('examples.hello_world', TListaItemManualInput);
+  RegisterJsonClass('examples.hello_world', TListaItemManualOutput);
   RegisterJsonClass('examples.hello_world', TNotifyUserEventPayload);
+  RegisterJsonClass('examples.hello_world', TPedido);
+  RegisterJsonClass('examples.hello_world', TPedidoPageRequest);
+  RegisterJsonClass('examples.hello_world', TPedidoPagedResults);
   RegisterJsonClass('examples.hello_world', TPushNotifyUserEventPayload);
   RegisterJsonClass('examples.hello_world', TServiceStartedPayload);
   
